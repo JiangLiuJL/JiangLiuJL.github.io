@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="江流的博客">
+    <meta property="og:type" content="website">
+    <meta name="description" content="江流的博客">
+    <meta name="keyword"  content="江流的博客，Java开发">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《MybatisPlus 常用注解》 - JiangLiu 日常
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="江流的个人博客" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 一名落魄的Java程序员 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>JiangLiu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TableName"><span class="toc-text">@TableName</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TableId"><span class="toc-text">@TableId</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Type%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="toc-text">Type属性值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TableField"><span class="toc-text">@TableField</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 一名落魄的Java程序员 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《MybatisPlus 常用注解》
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2022-07-15 00:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#注解" title="注解">注解</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Mybatis Plus" title="Mybatis Plus">Mybatis Plus</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="TableName"><a href="#TableName" class="headerlink" title="@TableName"></a>@TableName</h1><p>用法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableName(&quot;sys_user&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<p>描述：表名注解，标识实体类对应表</p>
+<p>使用位置：实体类类注解</p>
+<p>属性：</p>
+<ul>
+<li>value：表名</li>
+<li>schema：用来指定模式名称，如果使用的是mysql，则指定数据库名称，如果使用oracle，则为schema</li>
+<li>keepGlobalPrefix：是否保持使用全局的tablePrefix的值</li>
+<li>resultMap：xml中resultMap的id</li>
+<li>autoResultMap：是否自动构建ResultMap</li>
+<li>excludeProperty：需要排除的属性名</li>
+</ul>
+<h1 id="TableId"><a href="#TableId" class="headerlink" title="@TableId"></a>@TableId</h1><p>用法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableName(&quot;sys_user&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<p> 描述：主键属性</p>
+<p>使用位置：实体类主键字段</p>
+<p>属性：</p>
+<ul>
+<li>value：主键字段名</li>
+<li>type：指定主键类型</li>
+</ul>
+<h2 id="Type属性值"><a href="#Type属性值" class="headerlink" title="Type属性值"></a>Type属性值</h2><ul>
+<li>AUTO：数据库ID自增</li>
+<li>NONE：无状态，未设置主键类型（跟随全局，全局默认为INPUT）</li>
+<li>INPUT：insert前自行设置</li>
+<li>ASSIGN_ID：分配ID，使用接口<code>IdentifierGenerator</code>的<code>nextId</code>，实现类默认为雪花算法</li>
+<li>ASSIGN_UUID：分配UUID</li>
+</ul>
+<h2 id="TableField"><a href="#TableField" class="headerlink" title="@TableField"></a>@TableField</h2><p>用法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableName(&quot;sys_user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@TableId</span></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="meta">@TableField(&quot;nickname&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>描述：字段注解（非主键）</p>
+<p>属性：</p>
+<ul>
+<li>value：数据库字段名</li>
+<li>exist：是否为数据库字段</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/1794952398">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qm.qq.com/cgi-bin/qm/qr?k=ZJIyoBCxTJBHdyrsTC-0bZ6_wV7v8ztt&amp;noverify=0">联系我</a></span>
+        <span>/</span>
+        
+        <span><a href="https://1794952398.github.io/about/">JiangLiu&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://giscus.app/client.js"
+    data-repo="aircloud/hexo-aircloud-blog"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkxMjkwNDgyNjg="
+    data-category="Announcements"
+    data-category-id="DIC_kwDOB7EezM4COhKJ"
+    data-mapping="title"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+</script>
+
+
+
+
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="江流的博客">
+    <meta property="og:type" content="website">
+    <meta name="description" content="江流的博客">
+    <meta name="keyword"  content="江流的博客，Java开发">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《事务传播行为》 - JiangLiu 日常
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="江流的个人博客" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 一名落魄的Java程序员 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>JiangLiu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA"><span class="toc-text">什么是事务传播行为</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA%E7%9A%84%E4%B8%83%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-text">事务传播行为的七种方式</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 一名落魄的Java程序员 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《事务传播行为》
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2022-07-15 00:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#SpringBoot" title="SpringBoot">SpringBoot</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#事务" title="事务">事务</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="什么是事务传播行为"><a href="#什么是事务传播行为" class="headerlink" title="什么是事务传播行为"></a>什么是事务传播行为</h1><p>我们在Spring中使用事务时，经常会在一个事务中调用另外一个事务，这种事务嵌套的控制方式就是事务传播行为</p>
+<h1 id="事务传播行为的七种方式"><a href="#事务传播行为的七种方式" class="headerlink" title="事务传播行为的七种方式"></a>事务传播行为的七种方式</h1><ul>
+<li>propagation_required<ul>
+<li>事务传播的默认形式，如果当前没有事务，就新建一个事务，如果已经存在事务，就加入到这个事务中</li>
+</ul>
+</li>
+<li>propagation_supports<ul>
+<li>支持当前事务，如果当前没有事务，就以非事务方式执行</li>
+</ul>
+</li>
+<li>propagation_mandatory<ul>
+<li>使用当前事务，如果当前没有事务，就抛出异常</li>
+</ul>
+</li>
+<li>propagation_requires_new<ul>
+<li>新建事务，如果当前存在事务，就把当前事务挂起</li>
+</ul>
+</li>
+<li>propagation_not_supported<ul>
+<li>以非事务方式执行操作，如果当前存在事务，就把当前事务挂起</li>
+</ul>
+</li>
+<li>propagation_never<ul>
+<li>以非事务方式执行，如果当前存在事务，就抛出异常</li>
+</ul>
+</li>
+<li>propagation_nested<ul>
+<li>如果当前存在事务，则在嵌套事务内执行，如果当前没有事务，则执行propagation_required类似的操作</li>
+</ul>
+</li>
+</ul>
+<p>总结</p>
+<p>如果事务嵌套，子事务回滚，如果子事务没有将父事务挂起，父事务也会回滚，不管父事务中是否有对子事务进行异常捕获</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/1794952398">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qm.qq.com/cgi-bin/qm/qr?k=ZJIyoBCxTJBHdyrsTC-0bZ6_wV7v8ztt&amp;noverify=0">联系我</a></span>
+        <span>/</span>
+        
+        <span><a href="https://1794952398.github.io/about/">JiangLiu&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://giscus.app/client.js"
+    data-repo="aircloud/hexo-aircloud-blog"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkxMjkwNDgyNjg="
+    data-category="Announcements"
+    data-category-id="DIC_kwDOB7EezM4COhKJ"
+    data-mapping="title"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+</script>
+
+
+
+
+</html>

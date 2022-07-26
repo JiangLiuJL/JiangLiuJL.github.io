@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="江流的博客">
+    <meta property="og:type" content="website">
+    <meta name="description" content="江流的博客">
+    <meta name="keyword"  content="江流的博客，Java开发">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《Java流中的generate与iterator》——读书笔记 - JiangLiu 日常
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="江流的个人博客" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 一名落魄的Java程序员 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>JiangLiu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E6%B5%81%E4%B8%AD%E7%9A%84generate%E4%B8%8Eiterator"><span class="toc-text">Java流中的generate与iterator</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#iterator"><span class="toc-text">iterator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#generate"><span class="toc-text">generate</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 一名落魄的Java程序员 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《Java流中的generate与iterator》——读书笔记
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2022-07-26 00:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Java流" title="Java流">Java流</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="Java流中的generate与iterator"><a href="#Java流中的generate与iterator" class="headerlink" title="Java流中的generate与iterator"></a>Java流中的generate与iterator</h1><p>在Java流中，有两个创建无限流的方法：</p>
+<ul>
+<li>stream().generate()</li>
+<li>stream().iterator()</li>
+</ul>
+<h2 id="iterator"><a href="#iterator" class="headerlink" title="iterator"></a>iterator</h2><p>从源码中给的解释来看</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Returns an infinite sequential ordered Stream produced by iterative application of a function f to an initial element seed, producing a Stream consisting of seed, f(seed), f(f(seed)), etc.</span><br><span class="line">The first element (position 0) in the Stream will be the provided seed. For n &gt; 0, the element at position n, will be the result of applying the function f to the element at position n - 1.</span><br><span class="line">The action of applying f for one element happens-before the action of applying f for subsequent elements. For any given element the action may be performed in whatever thread the library chooses.</span><br><span class="line">形参:</span><br><span class="line">seed – the initial element f – a function to be applied to the previous element to produce a new element</span><br><span class="line">返回值:</span><br><span class="line">a new sequential Stream</span><br></pre></td></tr></table></figure>
+
+<p>iterator创建的无限流是根据<code>seed</code>与<code>initial element seed</code>来创建的，简单来说就是一个起始元素seed，一个创建的规则</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Stream&lt;BigInteger&gt; stream = Stream.iterate(BigInteger.ZERO, n -&gt; n.add(BigInteger.ONE)).limit(<span class="number">10</span>);</span><br><span class="line">        System.out.println(Arrays.toString(stream.filter(n -&gt; n.compareTo(<span class="keyword">new</span> BigInteger(String.valueOf(<span class="number">1794952398L</span>))) &lt; <span class="number">0</span>).toArray()));</span><br></pre></td></tr></table></figure>
+
+<p>这里用limit来限制一下产生的无限流，否则无法正常输出</p>
+<h2 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h2><p>同样还是来看源码中给的解释</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Returns an infinite sequential unordered stream where each element is generated by the provided Supplier. This is suitable for generating constant streams, streams of random elements, etc.</span><br><span class="line">形参:</span><br><span class="line">s – the Supplier of generated elements</span><br><span class="line">返回值:</span><br><span class="line">a new infinite sequential unordered Stream</span><br></pre></td></tr></table></figure>
+
+<p>对于generate来说，只提供给我们一个参数<code>Supplier</code>，翻译过来叫 供应商，里面存放着产生供应流的规则</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Stream&lt;Integer&gt; stream1 = Stream.generate(<span class="keyword">new</span> Supplier&lt;Integer&gt;() &#123;</span><br><span class="line">            <span class="keyword">static</span> <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Integer <span class="title">get</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> a++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).limit(<span class="number">20</span>);</span><br><span class="line">        System.out.println(Arrays.toString(stream1.toArray()));</span><br></pre></td></tr></table></figure>
+
+<p>这里同样用limit限制一下</p>
+<p>至于具体的使用场景，后续会继续更新</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/1794952398">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qm.qq.com/cgi-bin/qm/qr?k=ZJIyoBCxTJBHdyrsTC-0bZ6_wV7v8ztt&amp;noverify=0">联系我</a></span>
+        <span>/</span>
+        
+        <span><a href="https://1794952398.github.io/about/">JiangLiu&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://giscus.app/client.js"
+    data-repo="aircloud/hexo-aircloud-blog"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkxMjkwNDgyNjg="
+    data-category="Announcements"
+    data-category-id="DIC_kwDOB7EezM4COhKJ"
+    data-mapping="title"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+</script>
+
+
+
+
+</html>

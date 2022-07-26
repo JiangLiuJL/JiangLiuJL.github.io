@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="江流的博客">
+    <meta property="og:type" content="website">
+    <meta name="description" content="江流的博客">
+    <meta name="keyword"  content="江流的博客，Java开发">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《事务失效》 - JiangLiu 日常
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="江流的个人博客" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 一名落魄的Java程序员 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>JiangLiu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8E%E5%8E%9F%E5%9B%A0"><span class="toc-text">事务失效的几种情况与原因</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#service%E6%B2%A1%E6%9C%89%E6%89%98%E7%AE%A1%E7%BB%99spring"><span class="toc-text">service没有托管给spring</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%9B%E5%87%BA%E5%8F%97%E6%A3%80%E5%BC%82%E5%B8%B8"><span class="toc-text">抛出受检异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E8%87%AA%E5%B7%B1%E6%8D%95%E8%8E%B7%E4%BA%86%E5%BC%82%E5%B8%B8"><span class="toc-text">业务自己捕获了异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E9%9D%A2%E9%A1%BA%E5%BA%8F%E5%AF%BC%E8%87%B4"><span class="toc-text">切面顺序导致</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9Epublic%E6%96%B9%E6%B3%95"><span class="toc-text">非public方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%88%B6%E5%AD%90%E5%AE%B9%E5%99%A8"><span class="toc-text">父子容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E7%94%A8final%E4%BF%AE%E9%A5%B0"><span class="toc-text">方法用final修饰</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E7%94%A8static%E4%BF%AE%E9%A5%B0"><span class="toc-text">方法用static修饰</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E6%9C%AC%E7%B1%BB%E6%96%B9%E6%B3%95"><span class="toc-text">调用本类方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%B0%83%E7%94%A8"><span class="toc-text">多线程调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%9A%84%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA"><span class="toc-text">错误的传播行为</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%BA%86%E4%B8%8D%E6%94%AF%E6%8C%81%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="toc-text">使用了不支持事务的存储引擎</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%BA%90%E6%B2%A1%E6%9C%89%E9%85%8D%E7%BD%AE%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-text">数据源没有配置事务管理器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A2%AB%E4%BB%A3%E7%90%86%E7%9A%84%E7%B1%BB%E8%A2%AB%E8%BF%87%E6%97%A9%E5%AE%9E%E4%BE%8B%E5%8C%96"><span class="toc-text">被代理的类被过早实例化</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 一名落魄的Java程序员 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《事务失效》
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2022-07-15 00:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#SpringBoot" title="SpringBoot">SpringBoot</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#事务" title="事务">事务</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="事务失效的几种情况与原因"><a href="#事务失效的几种情况与原因" class="headerlink" title="事务失效的几种情况与原因"></a>事务失效的几种情况与原因</h1><ul>
+<li>service没有托管给spring</li>
+<li>抛出受检异常</li>
+<li>业务自己捕获了异常</li>
+<li>切面顺序导致</li>
+<li>非public方法</li>
+<li>父子容器</li>
+<li>方法被final修饰</li>
+<li>方法被static修饰</li>
+<li>调用本类方法</li>
+<li>多线程调用</li>
+<li>错误的传播行为</li>
+<li>使用了不支持事务的存储引擎</li>
+<li>数据源没有配置事务管理器</li>
+<li>被代理的类过早实例化</li>
+</ul>
+<h2 id="service没有托管给spring"><a href="#service没有托管给spring" class="headerlink" title="service没有托管给spring"></a>service没有托管给spring</h2><p>事务的前提是service必须是一个bean对象</p>
+<h2 id="抛出受检异常"><a href="#抛出受检异常" class="headerlink" title="抛出受检异常"></a>抛出受检异常</h2><p>spring默认回滚的是runtimeException，如果要触发其他异常的回滚，可以通过rollbackFor进行配置</p>
+<h2 id="业务自己捕获了异常"><a href="#业务自己捕获了异常" class="headerlink" title="业务自己捕获了异常"></a>业务自己捕获了异常</h2><p>spring只有捕捉到了业务抛出的异常时，才会进行后续处理，如果业务自己捕获了异常并进行处理，事务无法感知</p>
+<h2 id="切面顺序导致"><a href="#切面顺序导致" class="headerlink" title="切面顺序导致"></a>切面顺序导致</h2><p><img src="/img/image-20220713172742115.png" alt="image-20220713172742115"></p>
+<p>因为spring事务本质上也是一个切面，自定义切面捕捉到了异常但是没有往外抛出，事务切面捕获不到异常</p>
+<h2 id="非public方法"><a href="#非public方法" class="headerlink" title="非public方法"></a>非public方法</h2><p>spring事务默认生效的方法权限都必须为public</p>
+<p>解决办法：</p>
+<ul>
+<li>修改方法为public</li>
+<li>修改TransactionAttributeSource，将publicMethodsOnly修改为false</li>
+<li>开启AspectJ代理</li>
+</ul>
+<h2 id="父子容器"><a href="#父子容器" class="headerlink" title="父子容器"></a>父子容器</h2><p>原因：子容器扫描范围过大，将未加事务配置的service扫描进来</p>
+<p>这个一般用于spring整合springmvc中，springboot没有父子容器</p>
+<h2 id="方法用final修饰"><a href="#方法用final修饰" class="headerlink" title="方法用final修饰"></a>方法用final修饰</h2><p>spring事务是用动态代理实现的，如果方法使用了final修饰，代理类无法对目标类进行重写，就无法实现事务</p>
+<h2 id="方法用static修饰"><a href="#方法用static修饰" class="headerlink" title="方法用static修饰"></a>方法用static修饰</h2><p>原因和final一样</p>
+<h2 id="调用本类方法"><a href="#调用本类方法" class="headerlink" title="调用本类方法"></a>调用本类方法</h2><p>调用本类方法不经过代理，就无法进行增强</p>
+<h2 id="多线程调用"><a href="#多线程调用" class="headerlink" title="多线程调用"></a>多线程调用</h2><p>原因：spring的事务是通过数据库连接来实现的，而数据库连接spring是放在threadLocal里面的，同一个事务只能用同一个数据库连接。而多线程场景下，拿到的数据库连接不同，即属于不同事务</p>
+<h2 id="错误的传播行为"><a href="#错误的传播行为" class="headerlink" title="错误的传播行为"></a>错误的传播行为</h2><p>详情看  事务传播行为</p>
+<h2 id="使用了不支持事务的存储引擎"><a href="#使用了不支持事务的存储引擎" class="headerlink" title="使用了不支持事务的存储引擎"></a>使用了不支持事务的存储引擎</h2><p>比如mysql中的MyISAM就不支持事务</p>
+<h2 id="数据源没有配置事务管理器"><a href="#数据源没有配置事务管理器" class="headerlink" title="数据源没有配置事务管理器"></a>数据源没有配置事务管理器</h2><p>springboot中默认开启事务管理器</p>
+<h2 id="被代理的类被过早实例化"><a href="#被代理的类被过早实例化" class="headerlink" title="被代理的类被过早实例化"></a>被代理的类被过早实例化</h2><p>具体应该要看源码</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/1794952398">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qm.qq.com/cgi-bin/qm/qr?k=ZJIyoBCxTJBHdyrsTC-0bZ6_wV7v8ztt&amp;noverify=0">联系我</a></span>
+        <span>/</span>
+        
+        <span><a href="https://1794952398.github.io/about/">JiangLiu&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://giscus.app/client.js"
+    data-repo="aircloud/hexo-aircloud-blog"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkxMjkwNDgyNjg="
+    data-category="Announcements"
+    data-category-id="DIC_kwDOB7EezM4COhKJ"
+    data-mapping="title"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+</script>
+
+
+
+
+</html>

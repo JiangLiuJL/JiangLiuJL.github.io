@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="江流的博客">
+    <meta property="og:type" content="website">
+    <meta name="description" content="江流的博客">
+    <meta name="keyword"  content="江流的博客，Java开发">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《lambda表达式的语法》——读书笔记 - JiangLiu 日常
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="江流的个人博客" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 一名落魄的Java程序员 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>JiangLiu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="toc-text">lambda表达式的语法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3"><span class="toc-text">函数式接口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8"><span class="toc-text">方法引用</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 一名落魄的Java程序员 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《lambda表达式的语法》——读书笔记
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2022-07-15 00:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="lambda表达式的语法"><a href="#lambda表达式的语法" class="headerlink" title="lambda表达式的语法"></a>lambda表达式的语法</h1><p>了解过javax.swing.Timer函数和Comparator比较器的可以发现，这两个例子有一些共同点，都是将某一段代码块传到某个对象，如果可以直接传入一段代码块，那代码会变得非常简洁，但是Java并不支持这种方法，因为这会让Java语言变得一团糟</p>
+<p>在 java 8 后，加入了lambda表达式，这是一个可传递的代码块,可以让某个接口不写实现类而直接使用</p>
+<p>new Timer中需要传入一个ActionListener接口，实际上只是调用这个接口中的actionPerformed函数，Comparator也是同理</p>
+<p>案例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">lambdaTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String[] a = <span class="keyword">new</span> String[]&#123; <span class="string">&quot;Mercury&quot;</span> , <span class="string">&quot;Venus&quot;</span> , <span class="string">&quot;Earth&quot;</span> , <span class="string">&quot;Mars&quot;</span> ,</span><br><span class="line">                <span class="string">&quot;Jupiter&quot;</span> , <span class="string">&quot;Saturn&quot;</span> , <span class="string">&quot;Uranus&quot;</span> , <span class="string">&quot;Neptune&quot;</span>&#125;;</span><br><span class="line">        Arrays.sort(a, (left, right) -&gt; &#123;</span><br><span class="line">            <span class="keyword">return</span> left.length() - right.length();</span><br><span class="line">        &#125;);</span><br><span class="line">        System.out.println(a);</span><br><span class="line"></span><br><span class="line">        Timer t = <span class="keyword">new</span> Timer(<span class="number">100</span>, event -&gt;&#123;</span><br><span class="line">            System.out.println(<span class="keyword">new</span> Date());</span><br><span class="line">        &#125;);</span><br><span class="line">        t.start();</span><br><span class="line">        JOptionPane.showMessageDialog(<span class="keyword">null</span>, <span class="string">&quot;Quit&quot;</span>);</span><br><span class="line">        System.exit(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h1><p>Java中已经有了很多封装代码块地接口，如AactionListener、Comparator，lambda与这些接口是兼容的</p>
+<p>对于只有一个抽象方法的接口，需要用到这种接口的对象时，可以使用lambda表达式，这种接口成为函数式接口</p>
+<ul>
+<li>为什么Comparator接口也能成为函数式接口，明明有compare、equals两个抽象函数<ul>
+<li>对于接口重写Object的公共方法是不算入函数式接口中的，也就是说Comparator只有compare一个非公共抽象函数</li>
+</ul>
+</li>
+</ul>
+<p>以Arrays.sort为例，在底层，sort方法会接收Comparator的某个类的对象，在这个对象上再调用compare方法执行lambda表达式的方法体。</p>
+<p>lambda表达式可以转换成接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Timer t = <span class="keyword">new</span> Timer(<span class="number">100</span>, event -&gt;&#123;</span><br><span class="line">    System.out.println(<span class="keyword">new</span> Date());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>与原来的写法相比，这个可读性要高得多</p>
+<p>实际上在Java中 lambda 表达式的作用非常有限，也只能转换为函数式接口，在其他语言中，可以声明函数类型、声明这些类型的变量，还可以使用变量保存函数表达式。</p>
+<h1 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h1><p>有时候我们希望可已经有现成的方法可以完成你想要传递到其他代码的某个动作，比如希望定时器事件打印这个事件对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Timer t = <span class="keyword">new</span> Timer(<span class="number">1000</span>, event -&gt; System.out.println(event)):</span><br></pre></td></tr></table></figure>
+
+<p>但是入股哟能直接把print方法传递到Timer构造器就更简洁了，lambda</p>
+<p>表达式也能够做到</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Timer t = <span class="keyword">new</span> Timer(<span class="number">100</span>, System.out::println);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/image-20220720173122252.png" alt="image-20220720173122252"></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/1794952398">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qm.qq.com/cgi-bin/qm/qr?k=ZJIyoBCxTJBHdyrsTC-0bZ6_wV7v8ztt&amp;noverify=0">联系我</a></span>
+        <span>/</span>
+        
+        <span><a href="https://1794952398.github.io/about/">JiangLiu&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://giscus.app/client.js"
+    data-repo="aircloud/hexo-aircloud-blog"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkxMjkwNDgyNjg="
+    data-category="Announcements"
+    data-category-id="DIC_kwDOB7EezM4COhKJ"
+    data-mapping="title"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+</script>
+
+
+
+
+</html>
