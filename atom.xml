@@ -3,11 +3,11 @@
   <title>江流的个人博客</title>
   <icon>https://www.gravatar.com/avatar/13672193897b3dfe5bec9baac0db5740</icon>
   <subtitle>一名落魄的Java程序员</subtitle>
-  <link href="https://1794952398.github.io/atom.xml" rel="self"/>
+  <link href="https://jiangliujl.github.io/atom.xml" rel="self"/>
   
-  <link href="https://1794952398.github.io/"/>
+  <link href="https://jiangliujl.github.io/"/>
   <updated>2022-07-26T14:54:20.632Z</updated>
-  <id>https://1794952398.github.io/</id>
+  <id>https://jiangliujl.github.io/</id>
   
   <author>
     <name>JiangLiu</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>《Java流中的generate与iterator》——读书笔记</title>
-    <link href="https://1794952398.github.io/2022/07/26/stream%E4%B8%AD%E7%9A%84generate%E4%B8%8Eiterator/"/>
-    <id>https://1794952398.github.io/2022/07/26/stream%E4%B8%AD%E7%9A%84generate%E4%B8%8Eiterator/</id>
+    <link href="https://jiangliujl.github.io/2022/07/26/stream%E4%B8%AD%E7%9A%84generate%E4%B8%8Eiterator/"/>
+    <id>https://jiangliujl.github.io/2022/07/26/stream%E4%B8%AD%E7%9A%84generate%E4%B8%8Eiterator/</id>
     <published>2022-07-25T16:00:00.000Z</published>
     <updated>2022-07-26T14:54:20.632Z</updated>
     
@@ -34,16 +34,16 @@
     
     
     
-    <category term="Java" scheme="https://1794952398.github.io/tags/Java/"/>
+    <category term="Java" scheme="https://jiangliujl.github.io/tags/Java/"/>
     
-    <category term="Java流" scheme="https://1794952398.github.io/tags/Java%E6%B5%81/"/>
+    <category term="Java流" scheme="https://jiangliujl.github.io/tags/Java%E6%B5%81/"/>
     
   </entry>
   
   <entry>
     <title>《MyBatis 和 MyBatis Plus冲突问题》——解决模块</title>
-    <link href="https://1794952398.github.io/2022/07/25/mybatisplus%E5%92%8Cmybatis%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/"/>
-    <id>https://1794952398.github.io/2022/07/25/mybatisplus%E5%92%8Cmybatis%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/</id>
+    <link href="https://jiangliujl.github.io/2022/07/25/mybatisplus%E5%92%8Cmybatis%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/"/>
+    <id>https://jiangliujl.github.io/2022/07/25/mybatisplus%E5%92%8Cmybatis%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/</id>
     <published>2022-07-24T16:00:00.000Z</published>
     <updated>2022-07-25T04:45:02.722Z</updated>
     
@@ -58,18 +58,18 @@
     
     
     
-    <category term="MyBatis Plus" scheme="https://1794952398.github.io/tags/MyBatis-Plus/"/>
+    <category term="MyBatis Plus" scheme="https://jiangliujl.github.io/tags/MyBatis-Plus/"/>
     
-    <category term="SpringBoot" scheme="https://1794952398.github.io/tags/SpringBoot/"/>
+    <category term="SpringBoot" scheme="https://jiangliujl.github.io/tags/SpringBoot/"/>
     
-    <category term="问题解决" scheme="https://1794952398.github.io/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
+    <category term="问题解决" scheme="https://jiangliujl.github.io/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
     
   </entry>
   
   <entry>
     <title>《Timer定时器》——源码阅读</title>
-    <link href="https://1794952398.github.io/2022/07/15/Timer%E5%AE%9A%E6%97%B6%E5%99%A8/"/>
-    <id>https://1794952398.github.io/2022/07/15/Timer%E5%AE%9A%E6%97%B6%E5%99%A8/</id>
+    <link href="https://jiangliujl.github.io/2022/07/15/Timer%E5%AE%9A%E6%97%B6%E5%99%A8/"/>
+    <id>https://jiangliujl.github.io/2022/07/15/Timer%E5%AE%9A%E6%97%B6%E5%99%A8/</id>
     <published>2022-07-14T16:00:00.000Z</published>
     <updated>2022-07-24T08:22:51.673Z</updated>
     
@@ -84,16 +84,16 @@
     
     
     
-    <category term="源码阅读" scheme="https://1794952398.github.io/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
+    <category term="源码阅读" scheme="https://jiangliujl.github.io/tags/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
     
-    <category term="Java" scheme="https://1794952398.github.io/tags/Java/"/>
+    <category term="Java" scheme="https://jiangliujl.github.io/tags/Java/"/>
     
   </entry>
   
   <entry>
     <title>《Java常用注解》</title>
-    <link href="https://1794952398.github.io/2022/07/15/java%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/"/>
-    <id>https://1794952398.github.io/2022/07/15/java%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/</id>
+    <link href="https://jiangliujl.github.io/2022/07/15/java%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/"/>
+    <id>https://jiangliujl.github.io/2022/07/15/java%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/</id>
     <published>2022-07-14T16:00:00.000Z</published>
     <updated>2022-07-24T08:18:35.379Z</updated>
     
@@ -108,16 +108,16 @@
     
     
     
-    <category term="Java" scheme="https://1794952398.github.io/tags/Java/"/>
+    <category term="Java" scheme="https://jiangliujl.github.io/tags/Java/"/>
     
-    <category term="注解" scheme="https://1794952398.github.io/tags/%E6%B3%A8%E8%A7%A3/"/>
+    <category term="注解" scheme="https://jiangliujl.github.io/tags/%E6%B3%A8%E8%A7%A3/"/>
     
   </entry>
   
   <entry>
     <title>《lambda表达式的语法》——读书笔记</title>
-    <link href="https://1794952398.github.io/2022/07/15/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    <id>https://1794952398.github.io/2022/07/15/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/</id>
+    <link href="https://jiangliujl.github.io/2022/07/15/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>https://jiangliujl.github.io/2022/07/15/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/</id>
     <published>2022-07-14T16:00:00.000Z</published>
     <updated>2022-07-24T08:15:27.345Z</updated>
     
@@ -132,16 +132,16 @@
     
     
     
-    <category term="Java" scheme="https://1794952398.github.io/tags/Java/"/>
+    <category term="Java" scheme="https://jiangliujl.github.io/tags/Java/"/>
     
-    <category term="读书笔记" scheme="https://1794952398.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <category term="读书笔记" scheme="https://jiangliujl.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>《MybatisPlus 常用注解》</title>
-    <link href="https://1794952398.github.io/2022/07/15/mybatisplus%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/"/>
-    <id>https://1794952398.github.io/2022/07/15/mybatisplus%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/</id>
+    <link href="https://jiangliujl.github.io/2022/07/15/mybatisplus%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/"/>
+    <id>https://jiangliujl.github.io/2022/07/15/mybatisplus%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/</id>
     <published>2022-07-14T16:00:00.000Z</published>
     <updated>2022-07-24T08:18:49.322Z</updated>
     
@@ -157,16 +157,16 @@
     
     
     
-    <category term="注解" scheme="https://1794952398.github.io/tags/%E6%B3%A8%E8%A7%A3/"/>
+    <category term="注解" scheme="https://jiangliujl.github.io/tags/%E6%B3%A8%E8%A7%A3/"/>
     
-    <category term="Mybatis Plus" scheme="https://1794952398.github.io/tags/Mybatis-Plus/"/>
+    <category term="Mybatis Plus" scheme="https://jiangliujl.github.io/tags/Mybatis-Plus/"/>
     
   </entry>
   
   <entry>
     <title>《事务传播行为》</title>
-    <link href="https://1794952398.github.io/2022/07/15/%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA/"/>
-    <id>https://1794952398.github.io/2022/07/15/%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA/</id>
+    <link href="https://jiangliujl.github.io/2022/07/15/%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA/"/>
+    <id>https://jiangliujl.github.io/2022/07/15/%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA/</id>
     <published>2022-07-14T16:00:00.000Z</published>
     <updated>2022-07-24T08:43:36.116Z</updated>
     
@@ -181,18 +181,18 @@
     
     
     
-    <category term="SpringBoot" scheme="https://1794952398.github.io/tags/SpringBoot/"/>
+    <category term="SpringBoot" scheme="https://jiangliujl.github.io/tags/SpringBoot/"/>
     
-    <category term="事务" scheme="https://1794952398.github.io/tags/%E4%BA%8B%E5%8A%A1/"/>
+    <category term="事务" scheme="https://jiangliujl.github.io/tags/%E4%BA%8B%E5%8A%A1/"/>
     
-    <category term="MySQL" scheme="https://1794952398.github.io/tags/MySQL/"/>
+    <category term="MySQL" scheme="https://jiangliujl.github.io/tags/MySQL/"/>
     
   </entry>
   
   <entry>
     <title>《事务失效》</title>
-    <link href="https://1794952398.github.io/2022/07/15/%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8E%E5%8E%9F%E5%9B%A0/"/>
-    <id>https://1794952398.github.io/2022/07/15/%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8E%E5%8E%9F%E5%9B%A0/</id>
+    <link href="https://jiangliujl.github.io/2022/07/15/%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8E%E5%8E%9F%E5%9B%A0/"/>
+    <id>https://jiangliujl.github.io/2022/07/15/%E4%BA%8B%E5%8A%A1%E5%A4%B1%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8E%E5%8E%9F%E5%9B%A0/</id>
     <published>2022-07-14T16:00:00.000Z</published>
     <updated>2022-07-24T08:47:07.815Z</updated>
     
@@ -209,18 +209,18 @@
     
     
     
-    <category term="SpringBoot" scheme="https://1794952398.github.io/tags/SpringBoot/"/>
+    <category term="SpringBoot" scheme="https://jiangliujl.github.io/tags/SpringBoot/"/>
     
-    <category term="事务" scheme="https://1794952398.github.io/tags/%E4%BA%8B%E5%8A%A1/"/>
+    <category term="事务" scheme="https://jiangliujl.github.io/tags/%E4%BA%8B%E5%8A%A1/"/>
     
-    <category term="MySQL" scheme="https://1794952398.github.io/tags/MySQL/"/>
+    <category term="MySQL" scheme="https://jiangliujl.github.io/tags/MySQL/"/>
     
   </entry>
   
   <entry>
     <title>《SpringBoot常用注解》</title>
-    <link href="https://1794952398.github.io/2022/07/15/%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/"/>
-    <id>https://1794952398.github.io/2022/07/15/%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/</id>
+    <link href="https://jiangliujl.github.io/2022/07/15/%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/"/>
+    <id>https://jiangliujl.github.io/2022/07/15/%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/</id>
     <published>2022-07-14T16:00:00.000Z</published>
     <updated>2022-07-24T08:44:54.434Z</updated>
     
@@ -237,16 +237,16 @@
     
     
     
-    <category term="注解" scheme="https://1794952398.github.io/tags/%E6%B3%A8%E8%A7%A3/"/>
+    <category term="注解" scheme="https://jiangliujl.github.io/tags/%E6%B3%A8%E8%A7%A3/"/>
     
-    <category term="SpringBoot" scheme="https://1794952398.github.io/tags/SpringBoot/"/>
+    <category term="SpringBoot" scheme="https://jiangliujl.github.io/tags/SpringBoot/"/>
     
   </entry>
   
   <entry>
     <title>《常用类与接口》</title>
-    <link href="https://1794952398.github.io/2022/07/15/%E5%B8%B8%E7%94%A8%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3/"/>
-    <id>https://1794952398.github.io/2022/07/15/%E5%B8%B8%E7%94%A8%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3/</id>
+    <link href="https://jiangliujl.github.io/2022/07/15/%E5%B8%B8%E7%94%A8%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3/"/>
+    <id>https://jiangliujl.github.io/2022/07/15/%E5%B8%B8%E7%94%A8%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3/</id>
     <published>2022-07-14T16:00:00.000Z</published>
     <updated>2022-07-24T08:46:35.502Z</updated>
     
@@ -261,7 +261,7 @@
     
     
     
-    <category term="Java" scheme="https://1794952398.github.io/tags/Java/"/>
+    <category term="Java" scheme="https://jiangliujl.github.io/tags/Java/"/>
     
   </entry>
   
