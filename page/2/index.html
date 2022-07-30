@@ -13,7 +13,7 @@
 
     <title>
         
-        《SpringBoot常用注解》 - JiangLiu 日常
+        JiangLiu 日常
         
     </title>
 
@@ -60,7 +60,7 @@
     </div>
     <div class="contents" id="nav-content">
         <ul>
-            <li >
+            <li  class=active >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
                     <span>主页</span>
@@ -101,10 +101,6 @@
         </ul>
     </div>
     
-        <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Springboot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3"><span class="toc-text">Springboot常用注解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBootApplication%E6%B3%A8%E8%A7%A3"><span class="toc-text">@SpringBootApplication注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transaction"><span class="toc-text">@Transaction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B1%E6%95%88%E5%9C%BA%E6%99%AF"><span class="toc-text">失效场景</span></a></li></ol></li></ol></li></ol>
-</div>
-    
 </div>
 
 
@@ -129,58 +125,83 @@
     <div class="index-middle">
         <!-- Main Content -->
         
-
-
-<div class="post-container">
-    <div class="post-title">
-        《SpringBoot常用注解》
-    </div>
-
-    <div class="post-meta">
-        <span class="attr">发布于：<span>2022-07-15 00:00:00</span></span>
-        
-        <span class="attr">标签：/
-        
-        <a class="tag" href="/tags/#注解" title="注解">注解</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#SpringBoot" title="SpringBoot">SpringBoot</a>
-        <span>/</span>
-        
-        
-        </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
-    </div>
-    <div class="post-content no-indent">
-        <h1 id="Springboot常用注解"><a href="#Springboot常用注解" class="headerlink" title="Springboot常用注解"></a>Springboot常用注解</h1><ul>
-<li>Value：属性赋值</li>
-<li>Component：与业务层、dao层、控制层不相关的类需要在spring容器中创建使用</li>
-<li>Mapper：注解当前类为mapper类</li>
-<li>MapperScan：如果想要每个接口都变成实现类，那么需要在每个接口上添加Mapper注解，比较麻烦，可以使用MapperScan进行扫描</li>
-<li>Service：表示当前层为Service层</li>
-<li>Controller：控制层对象的创建</li>
-<li>RestController：Controller与ResponseBody的结合，让当前类下web请求返回数据而不是视图</li>
-<li>Autowired：根据类型自动注入</li>
-<li>Resouce：根据名称自动注入</li>
-</ul>
-<h2 id="SpringBootApplication注解"><a href="#SpringBootApplication注解" class="headerlink" title="@SpringBootApplication注解"></a>@SpringBootApplication注解</h2><p>这个注解包含了三个注解，分别是：</p>
-<p>@SpringBootConfiguration：自动扫描添加了@Configuration注解的类，读取其中的配置信息</p>
-<p>@EnableAutoConfiguration：开启自动配置告诉Springboot基于所添加的依赖去猜测你想要如何配置spring，比如说我们引入了spring-boot-starter-web，而这个启动器中帮我们添加了tomcat、SpringMVC的依赖，此时自动配置就只要你是要开发一个web应用，就会帮我们去完成web以及springMVC的默认配置。</p>
-<p>@ComponentScan：配置组件扫描</p>
-<h2 id="Transaction"><a href="#Transaction" class="headerlink" title="@Transaction"></a>@Transaction</h2><p>事务注解</p>
-<h3 id="失效场景"><a href="#失效场景" class="headerlink" title="失效场景"></a>失效场景</h3><p>具体看我的另一篇博客——《事务失效》</p>
-
-        
-        <br />
-        <div id="comment-container">
+<div class="post-preview-container" style="min-height: 720px">
+    
+    <div class="post-preview">
+        <div class="post-time">2022-07-15</div>
+        <div class="post-info">
+            <a href="https://jiangliujl.github.io/2022/07/15/LongAdder%E5%92%8CAutomicLong%E7%9A%84%EF%BC%88%E5%BE%85%E5%AE%8C%E6%88%90%EF%BC%89/">
+                <h3>
+                    《原子类》
+                </h3>
+            </a>
+            <p>
+                
+                <span>/</span>
+                
+                <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                <span>/</span>
+                
+                
+            </p>
         </div>
-        <div id="disqus_thread"></div>
-        <div id="lv-container"></div>
-        <div class="giscus"></div>
     </div>
+    
+    <div class="post-preview">
+        <div class="post-time">2022-07-15</div>
+        <div class="post-info">
+            <a href="https://jiangliujl.github.io/2022/07/15/SpringBoot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">
+                <h3>
+                    《SpringBoot常用注解》
+                </h3>
+            </a>
+            <p>
+                
+                <span>/</span>
+                
+                <a class="tag" href="/tags/#注解" title="注解">注解</a>
+                <span>/</span>
+                
+                <a class="tag" href="/tags/#SpringBoot" title="SpringBoot">SpringBoot</a>
+                <span>/</span>
+                
+                
+            </p>
+        </div>
+    </div>
+    
+    <div class="post-preview">
+        <div class="post-time">2022-07-15</div>
+        <div class="post-info">
+            <a href="https://jiangliujl.github.io/2022/07/15/Timer%E5%AE%9A%E6%97%B6%E5%99%A8%EF%BC%88%E5%BE%85%E5%AE%8C%E6%88%90%EF%BC%89/">
+                <h3>
+                    《Timer定时器》——源码阅读
+                </h3>
+            </a>
+            <p>
+                
+                <span>/</span>
+                
+                <a class="tag" href="/tags/#源码阅读" title="源码阅读">源码阅读</a>
+                <span>/</span>
+                
+                <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                <span>/</span>
+                
+                
+            </p>
+        </div>
+    </div>
+    
 </div>
+<ul class="pager">
+    
+    <li class="previous">
+        <a href="/">&larr; Newer Posts</a>
+    </li>
+    
+    
+</ul>
 
     </div>
 </div>
@@ -242,7 +263,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/"
-    window.isPost = true
+    window.isPost = false
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 
@@ -251,22 +272,6 @@
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
-
-
-    <script src="https://giscus.app/client.js"
-    data-repo="aircloud/hexo-aircloud-blog"
-    data-repo-id="MDEwOlJlcG9zaXRvcnkxMjkwNDgyNjg="
-    data-category="Announcements"
-    data-category-id="DIC_kwDOB7EezM4COhKJ"
-    data-mapping="title"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="bottom"
-    data-theme="light"
-    data-lang="zh-CN"
-    crossorigin="anonymous"
-    async>
-</script>
 
 
 

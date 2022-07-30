@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="江流的博客">
+    <meta property="og:type" content="website">
+    <meta name="description" content="江流的博客">
+    <meta name="keyword"  content="江流的博客，Java开发">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《RabbitMQ学习笔记》——读书笔记 - JiangLiu 日常
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="江流的个人博客" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 一名落魄的Java程序员 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>JiangLiu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFMQ"><span class="toc-text">什么是MQ</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MQ%E5%9C%A8SpringBoot%E4%B8%AD%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-text">MQ在SpringBoot中的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3"><span class="toc-text">配置详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#virtual-host"><span class="toc-text">virtual-host</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#publisher-confirms"><span class="toc-text">publisher-confirms</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E5%92%8C%E6%B6%88%E8%B4%B9%E8%80%85%E7%A1%AE%E8%AE%A4"><span class="toc-text">生产者和消费者确认</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%B4%B9%E8%80%85%E7%A1%AE%E8%AE%A4"><span class="toc-text">消费者确认</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8ACK"><span class="toc-text">自动ACK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8ACK"><span class="toc-text">手动ACK</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 一名落魄的Java程序员 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《RabbitMQ学习笔记》——读书笔记
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2022-07-27 00:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#SpringBoot" title="SpringBoot">SpringBoot</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#RabbitMQ" title="RabbitMQ">RabbitMQ</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="什么是MQ"><a href="#什么是MQ" class="headerlink" title="什么是MQ"></a>什么是MQ</h1><p>MQ是<code>Message Queue</code>的简称，就是一个消息队列，队列嘛，FIFO先进先出，与普通队列的区别就是，MQ中存放的是消息，并且它是一种跨进程的通信机制，用于上下游传递消息，能够实现上下游之间的解耦</p>
+<h1 id="MQ在SpringBoot中的配置"><a href="#MQ在SpringBoot中的配置" class="headerlink" title="MQ在SpringBoot中的配置"></a>MQ在SpringBoot中的配置</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">	<span class="attr">rabbitmq:</span></span><br><span class="line">		<span class="attr">host:</span> <span class="string">//</span> <span class="string">rabbitmq的地址</span></span><br><span class="line">		<span class="attr">port:</span> <span class="string">//</span> <span class="string">mq的端口</span></span><br><span class="line">		<span class="attr">username:</span> <span class="string">//</span> <span class="string">mq的用户名</span></span><br><span class="line">		<span class="attr">password:</span> <span class="string">//</span> <span class="string">mq的密码</span></span><br><span class="line">		<span class="attr">virtual-host:</span> <span class="string">//</span> <span class="string">虚拟消息服务器</span></span><br><span class="line">		<span class="attr">publisher-confirms:</span> <span class="string">//</span> <span class="string">是否开启发送确认</span></span><br><span class="line">		<span class="attr">publisher-returns:</span> <span class="string">//</span> <span class="string">是否开启发送失败退回</span></span><br><span class="line">		<span class="attr">template:</span></span><br><span class="line">			<span class="attr">mandatory:</span> <span class="string">//</span> <span class="string">生产者是否启用强制消息</span></span><br><span class="line">			<span class="attr">retry:</span></span><br><span class="line">				<span class="attr">enable:</span> <span class="string">//</span> <span class="string">生产者是否开启重启</span></span><br><span class="line">		<span class="attr">listener:</span></span><br><span class="line">			<span class="attr">acknowledge-mode:</span> <span class="string">//</span> <span class="string">消费者ack模式</span></span><br><span class="line">			<span class="attr">retry:</span></span><br><span class="line">				<span class="attr">enable:</span> <span class="string">//</span> <span class="string">消费者是否重试</span></span><br><span class="line">				<span class="attr">max-attempts:</span> <span class="string">//</span> <span class="string">消费者重试次数</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="配置详解"><a href="#配置详解" class="headerlink" title="配置详解"></a>配置详解</h2><h3 id="virtual-host"><a href="#virtual-host" class="headerlink" title="virtual-host"></a>virtual-host</h3><p><code>virtualHost</code>虚拟消息服务器，每个virtualHost相当于一个独立的MQ服务器，每个VirtualHost之间消息是隔离的，exchange、queue、message不能互通</p>
+<h3 id="publisher-confirms"><a href="#publisher-confirms" class="headerlink" title="publisher-confirms"></a>publisher-confirms</h3><p>这个配置是为了在MQ和生产者之间的消息能够可靠传输，是MQ的扩展</p>
+<p>生产者推送消息到消息队列后，会触发两个回调函数<code>ConfirmCallback</code>和<code>ReturnCallback</code>，从消息推送的结果来看，一共有四种组合：</p>
+<ul>
+<li>消息推送到server，但是在server里找不到交换机</li>
+<li>消息推送到server，找到了交换机但是找不到队列</li>
+<li>消息推送到server了，交换机和队列都没找到</li>
+<li>消息推送成功</li>
+</ul>
+<p>生产者和消费者确认详见后文</p>
+<h1 id="生产者和消费者确认"><a href="#生产者和消费者确认" class="headerlink" title="生产者和消费者确认"></a>生产者和消费者确认</h1><p>由于MQ的传输协议方法无法确认生产者和消费者是否成功发布或者消费信息，所以生产者和消费者都需要一种传递和处理确认的机制</p>
+<h2 id="消费者确认"><a href="#消费者确认" class="headerlink" title="消费者确认"></a>消费者确认</h2><h3 id="自动ACK"><a href="#自动ACK" class="headerlink" title="自动ACK"></a>自动ACK</h3><p>在MQ中有一种自动确认模式机制，消息发送成功后立即被视为传递成功，这种模式以更高的吞吐量来降低交付和消费者处理的安全性为代价，如果消费者的TCP连接或通道在消息发送成功之前关闭，那么消息就会丢失，所以这种方法被视为是不安全的。</p>
+<p>在这个模式中，当方法没有异常执行完毕后，会对MQ发出ACK，若方法出现异常，会对MQ发出nack，消息重回队列。</p>
+<h3 id="手动ACK"><a href="#手动ACK" class="headerlink" title="手动ACK"></a>手动ACK</h3><p>常用API：</p>
+<ul>
+<li>channel.basicAck(msg.getMessageProperties().getDeliveryTag(), false/true)<ul>
+<li>消息确认，第一个参数是队列名称，第二个参数是multiple<ul>
+<li>multiple：是否一次性ack所有deleveryTag的消息</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>channel.basicReject(deleveryTag, requeue)<ul>
+<li>拒绝消息<ul>
+<li>requeue：bool类型，false表示将这条消息丢弃，true表示消息重回队列</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>channel.basicNack(deliveryTag, multiple, requeue)<ul>
+<li>拒绝消息<ul>
+<li>deliveryTag：队列名称</li>
+<li>multiple：是否拒绝deliveryTag的所有消息</li>
+<li>requeue：是否返回队列</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/1794952398">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qm.qq.com/cgi-bin/qm/qr?k=ZJIyoBCxTJBHdyrsTC-0bZ6_wV7v8ztt&amp;noverify=0">联系我</a></span>
+        <span>/</span>
+        
+        <span><a href="https://jiangliujl.github.io/about/">JiangLiu&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://giscus.app/client.js"
+    data-repo="aircloud/hexo-aircloud-blog"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkxMjkwNDgyNjg="
+    data-category="Announcements"
+    data-category-id="DIC_kwDOB7EezM4COhKJ"
+    data-mapping="title"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+</script>
+
+
+
+
+</html>
