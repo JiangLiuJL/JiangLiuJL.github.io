@@ -13,7 +13,7 @@
 
     <title>
         
-        《Timer定时器》——源码阅读 - JiangLiu 日常
+        《Redis实现客户端缓存》 - JiangLiu 日常
         
     </title>
 
@@ -102,7 +102,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Timer"><span class="toc-text">Timer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#java-util-Timer"><span class="toc-text">java.util.Timer</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E6%A8%A1%E5%BC%8F"><span class="toc-text">默认模式</span></a></li></ol>
 </div>
     
 </div>
@@ -133,18 +133,15 @@
 
 <div class="post-container">
     <div class="post-title">
-        《Timer定时器》——源码阅读
+        《Redis实现客户端缓存》
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2022-07-15 00:00:00</span></span>
+        <span class="attr">发布于：<span>2022-07-31 00:00:00</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#源码阅读" title="源码阅读">源码阅读</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+        <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
         <span>/</span>
         
         
@@ -154,25 +151,12 @@
 </span>
     </div>
     <div class="post-content no-indent">
-        <h1 id="Timer"><a href="#Timer" class="headerlink" title="Timer"></a>Timer</h1><p>简单来说，Timer就像是一个闹钟，给定时器安排一个任务，约定这个任务在xxx时间后执行，可以执行一次或多次</p>
-<p>TimerTask是一个抽象类，它的子类代表一个可以被Timer计划的任务</p>
-<p>Timer一共有三个：</p>
+        <p>在redis中，客户端缓存支持又被成为跟踪，有两种实现模式：</p>
 <ul>
-<li>javax.swing.Timer</li>
-<li>java.util.Timer</li>
-<li>javax.management.Timer</li>
+<li>在默认模式下，服务器会记住给定客户端访问的键，并且在相同的键被修改时发送无效信息。这将占用服务器端内存，但是只会为客户端内存中可能存在的一组键发送无效信息</li>
+<li>在广播模式下，服务器不会试图记住给定客户端访问的键，因此这种模式在服务器客户端不消耗任何内存。而客户端通过订阅前缀如<code>object:</code>或<code>user:</code>，并在键匹配订阅前缀是接收通知消息</li>
 </ul>
-<p>java.util.Timer是最常用的</p>
-<h2 id="java-util-Timer"><a href="#java-util-Timer" class="headerlink" title="java.util.Timer"></a>java.util.Timer</h2><p>在源码中，对Timer的介绍是这样的</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">A facility for threads to schedule tasks for future execution in a background thread. Tasks may be scheduled for one-time execution, or for repeated execution at regular intervals.</span><br><span class="line">Corresponding to each Timer object is a single background thread that is used to execute all of the timer&#x27;s tasks, sequentially. Timer tasks should complete quickly. If a timer task takes excessive time to complete, it &quot;hogs&quot; the timer&#x27;s task execution thread. This can, in turn, delay the execution of subsequent tasks, which may &quot;bunch up&quot; and execute in rapid succession when (and if) the offending task finally completes.</span><br><span class="line">After the last live reference to a Timer object goes away and all outstanding tasks have completed execution, the timer&#x27;s task execution thread terminates gracefully (and becomes subject to garbage collection). However, this can take arbitrarily long to occur. By default, the task execution thread does not run as a daemon thread, so it is capable of keeping an application from terminating. If a caller wants to terminate a timer&#x27;s task execution thread rapidly, the caller should invoke the timer&#x27;s cancel method.</span><br><span class="line">If the timer&#x27;s task execution thread terminates unexpectedly, for example, because its stop method is invoked, any further attempt to schedule a task on the timer will result in an IllegalStateException, as if the timer&#x27;s cancel method had been invoked.</span><br><span class="line">This class is thread-safe: multiple threads can share a single Timer object without the need for external synchronization.</span><br><span class="line">This class does not offer real-time guarantees: it schedules tasks using the Object.wait(long) method.</span><br><span class="line">Java 5.0 introduced the java.util.concurrent package and one of the concurrency utilities therein is the ScheduledThreadPoolExecutor which is a thread pool for repeatedly executing tasks at a given rate or delay. It is effectively a more versatile replacement for the Timer/TimerTask combination, as it allows multiple service threads, accepts various time units, and doesn&#x27;t require subclassing TimerTask (just implement Runnable). Configuring ScheduledThreadPoolExecutor with one thread makes it equivalent to Timer.</span><br><span class="line">Implementation note: This class scales to large numbers of concurrently scheduled tasks (thousands should present no problem). Internally, it uses a binary heap to represent its task queue, so the cost to schedule a task is O(log n), where n is the number of concurrently scheduled tasks.</span><br><span class="line">Implementation note: All constructors start a timer thread.</span><br></pre></td></tr></table></figure>
-
-<p>首先，Timer是为了以后在后台线程中执行任务的工具，任务可以执行一次或多次</p>
-<p>Timer中的所有任务都在一个线程中，用于按顺序执行所有定时器的任务，定时器任务应该设置为很快完成，否则它将占用其他任务的时间，相反也有好处，可以延后后续任务的执行。</p>
-<p>在一个Timer对象的最后一个引用消失并且所有任务都已完成后，Timer的线程会成为垃圾回收的对象。默认情况下，任务执行线程不作为守护线程。因此它能够防止应用程序终止</p>
-<p>如果定时器的任务线程意外终止。例如，调用了它的stop方法，那么任何进一步尝试在计时器上安排任务都将导致IllegalStateException，就如同调用了计时器的取消方法一样</p>
-<p>Timer这个类是线程安全的，多个线程可以共享一个Timer对象</p>
-<p>在 java 5.0 以后，Java引入了java.util.concurrent包，其中ScheduledThreadPoolExecutor是一个并发实用程序，它实际上是一个线程池，用于以给定的速率或延迟重复执行任务。它实际上是Timer/TimerTask组合的更通用替代品</p>
-
+<h1 id="默认模式"><a href="#默认模式" class="headerlink" title="默认模式"></a>默认模式</h1>
         
         <br />
         <div id="comment-container">

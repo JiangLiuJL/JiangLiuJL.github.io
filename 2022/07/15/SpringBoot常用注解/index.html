@@ -102,7 +102,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Springboot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3"><span class="toc-text">Springboot常用注解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBootApplication%E6%B3%A8%E8%A7%A3"><span class="toc-text">@SpringBootApplication注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transaction"><span class="toc-text">@Transaction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B1%E6%95%88%E5%9C%BA%E6%99%AF"><span class="toc-text">失效场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EnableScheduling"><span class="toc-text">@EnableScheduling</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Springboot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3"><span class="toc-text">Springboot常用注解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBootApplication%E6%B3%A8%E8%A7%A3"><span class="toc-text">@SpringBootApplication注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transaction"><span class="toc-text">@Transaction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B1%E6%95%88%E5%9C%BA%E6%99%AF"><span class="toc-text">失效场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EnableScheduling"><span class="toc-text">@EnableScheduling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bean"><span class="toc-text">@Bean</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PostConstruct"><span class="toc-text">@PostConstruct</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ConfigurationProperties"><span class="toc-text">@ConfigurationProperties</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Qualifier"><span class="toc-text">@Qualifier</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -172,6 +172,27 @@
 <h2 id="Transaction"><a href="#Transaction" class="headerlink" title="@Transaction"></a>@Transaction</h2><p>事务注解</p>
 <h3 id="失效场景"><a href="#失效场景" class="headerlink" title="失效场景"></a>失效场景</h3><p>具体看我的另一篇博客——《事务失效》</p>
 <h2 id="EnableScheduling"><a href="#EnableScheduling" class="headerlink" title="@EnableScheduling"></a>@EnableScheduling</h2><p>开启定时任务，配合@Schedule注解使用，使这个注解功能可用</p>
+<h2 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h2><p>告诉方法产生一个bean对象，然后将这个bean交给spring进行管理，在产生bean的时候这个方法会调用一次，然后将产生的bean对象放入spring容器中</p>
+<h2 id="PostConstruct"><a href="#PostConstruct" class="headerlink" title="@PostConstruct"></a>@PostConstruct</h2><p>在spring中，有一个接口叫<code>InitializationBean</code>，这个接口允许bean在合适的时机通过设置注解的初始化属性从而调用初始化方法，并且在这个接口中有一个定义好的初始化方法<code>afterPropertiesSet</code></p>
+<p><strong>但是</strong>，spring并不推荐使用这种方法来调用初始化，它会将不必要的代码耦合到spring</p>
+<p>相比于<code>InitializationBean</code>，spring更推荐我们使用<code>@PostConstruct</code>注解</p>
+<p>至于为什么推荐使用<code>@PostConstruct</code>：</p>
+<ul>
+<li>InitializationBean是直接执行方法来进行初始化的，会耦合进Spring项目</li>
+<li>@PostConstruct注解是通过反射机制来初始化的</li>
+</ul>
+<h2 id="ConfigurationProperties"><a href="#ConfigurationProperties" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h2><p>在SpringBoot中，如果我们想要获取到配置文件中某个属性的值，有两个方法：</p>
+<ul>
+<li>@Value</li>
+<li>@ConfigurationProperties</li>
+</ul>
+<p>这里我们只介绍第二个</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">config:</span></span><br><span class="line">	<span class="attr">username:</span> <span class="string">JiangLiu</span></span><br><span class="line">	<span class="attr">password:</span> <span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<p>如果我们想要获取username，只需要这样</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;config&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestBean</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Qualifier"><a href="#Qualifier" class="headerlink" title="@Qualifier"></a>@Qualifier</h2><p><code>@Autowired</code>注解可以帮助我们进行spring依赖注入，但是很多场景下只用这个注解，spring并不知道我们需要注入哪个bean，比如B、C两个类同时继承A接口，这时我们注入A，spring就会抛出<code>NoUniqueBeanDefinitionException</code>异常，这时就需要使用@Qualifier注解</p>
 
         
         <br />
