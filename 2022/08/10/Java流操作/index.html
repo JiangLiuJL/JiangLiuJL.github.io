@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="江流的博客">
+    <meta property="og:type" content="website">
+    <meta name="description" content="江流的博客">
+    <meta name="keyword"  content="江流的博客，Java开发">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《Java流操作》——读书笔记 - JiangLiu 日常
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="江流的个人博客" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 一名落魄的Java程序员 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>JiangLiu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8E%E8%BF%AD%E4%BB%A3%E5%88%B0%E6%B5%81%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-text">从迭代到流的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#stream%E5%92%8CparallelStream"><span class="toc-text">stream和parallelStream</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%A0%E8%8A%82%E6%80%BB%E7%BB%93"><span class="toc-text">章节总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-text">流的创建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8E%A8%E8%8D%90Array-stream"><span class="toc-text">为什么推荐Array.stream</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E9%99%90%E6%B5%81"><span class="toc-text">无限流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#iterator"><span class="toc-text">iterator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#generate"><span class="toc-text">generate</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%A0%E8%8A%82%E6%80%BB%E7%BB%93-1"><span class="toc-text">章节总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#filter%E3%80%81map%E5%92%8CflatMap"><span class="toc-text">filter、map和flatMap</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#filter"><span class="toc-text">filter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map"><span class="toc-text">map</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flatMap"><span class="toc-text">flatMap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%A0%E8%8A%82%E6%80%BB%E7%BB%93-2"><span class="toc-text">章节总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%BD%E5%8F%96%E5%AD%90%E6%B5%81%E5%92%8C%E8%BF%9E%E6%8E%A5%E6%B5%81"><span class="toc-text">抽取子流和连接流</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E5%8F%96%E6%B5%81"><span class="toc-text">抽取流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E6%B5%81"><span class="toc-text">连接流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%A0%E8%8A%82%E6%80%BB%E7%BB%93-3"><span class="toc-text">章节总结</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 一名落魄的Java程序员 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《Java流操作》——读书笔记
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2022-08-10 00:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Java流" title="Java流">Java流</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="从迭代到流的操作"><a href="#从迭代到流的操作" class="headerlink" title="从迭代到流的操作"></a>从迭代到流的操作</h1><p>处理集合时，我们常常会遍历他们的元素，然后对其中的元素做一些操作，例如我们如果想从一个文件中读取一个字符串，然后用非字母对他们进行分割，我们一般会这么干</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String contents = Files.readString(Paths.get(<span class="string">&quot;D:/001_program/JavaProgram/JavaBase/src/main/java/核心技术卷II/JavaSe8的流库/从迭代到流的操作/alice.txt&quot;</span>));</span><br><span class="line"><span class="comment">// 非字母分隔符</span></span><br><span class="line">List&lt;String&gt; words = Arrays.asList(contents.split(<span class="string">&quot;\\PL+&quot;</span>));</span><br><span class="line">System.out.println(words);</span><br><span class="line"><span class="keyword">for</span> (String word : words) &#123;</span><br><span class="line">    System.out.println(word);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在，我们可以尝试用流的操作替代循环</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">        String contents = Files.readString(Paths.get(<span class="string">&quot;D:/001_program/JavaProgram/JavaBase/src/main/java/核心技术卷II/JavaSe8的流库/从迭代到流的操作/alice.txt&quot;</span>));</span><br><span class="line">        <span class="comment">// 非字母分隔符</span></span><br><span class="line">        List&lt;String&gt; words = Arrays.asList(contents.split(<span class="string">&quot;\\PL+&quot;</span>));</span><br><span class="line">        System.out.println(words);</span><br><span class="line"><span class="comment">//        for (String word : words) &#123;</span></span><br><span class="line"><span class="comment">//            System.out.println(word);</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line">        <span class="keyword">long</span> count1 = words.stream().filter(Objects::nonNull).count();</span><br><span class="line">        System.out.println(count1);</span><br></pre></td></tr></table></figure>
+
+<p>就像这样，这比循环更加简洁</p>
+<h2 id="stream和parallelStream"><a href="#stream和parallelStream" class="headerlink" title="stream和parallelStream"></a>stream和parallelStream</h2><p>在Java中，这两种都是流操作，但是它们两个有一些区别</p>
+<ul>
+<li>stream是串行流，也就是说stream流中的元素是一个一个顺序执行的</li>
+<li>而parallelStream是并行流，可以以并行方式来进行过滤和计数</li>
+</ul>
+<p>至于并行流，在后面会详细介绍</p>
+<p>流操作表面上和集合是非常相似的，但是它们有着非常显著的差异：</p>
+<ul>
+<li>流操作并不存储元素。这些元素储存在底层的集合中按需生成。</li>
+<li>流操作并不会修改数据源，而是产生一个新的流</li>
+<li>流的操作是尽可能惰性执行的。比如我们想要查找前五个长单词而不是所有长单词，那么流就会在匹配到第五个长单词时停止过滤，因此按理说我们可以操作无限流。</li>
+</ul>
+<h2 id="章节总结"><a href="#章节总结" class="headerlink" title="章节总结"></a>章节总结</h2><p>流操作API：</p>
+<ul>
+<li>filter(Predicate&lt;? super T&gt; P)：产生一个流，其中包含所有满足P的元素</li>
+<li>count()：计算当前流中元素的数量</li>
+</ul>
+<p>流的种类：</p>
+<ul>
+<li>stream：串行流</li>
+<li>parallelStream：并行流</li>
+</ul>
+<h1 id="流的创建"><a href="#流的创建" class="headerlink" title="流的创建"></a>流的创建</h1><p>我们已经知道用Collection类的stream方法可以将一个集合转化为流，当然，不止集合，数组也可以</p>
+<p>对于一个数组，我们可以使用Stream.of方法将数组转变为流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>&#125;;</span><br><span class="line">Stream&lt;<span class="keyword">int</span>[]&gt; a1 = Stream.of(a);</span><br></pre></td></tr></table></figure>
+
+<p>of方法用的是可变参数，所以我们可以传入任意长度的数组</p>
+<p>但是更加推荐Array.stream(array, from, to)方法，可以从数组的from到to创建一个流对象</p>
+<p>如果想产生一个空的流，可以使用<code>Stream.empty()</code>方法</p>
+<h2 id="为什么推荐Array-stream"><a href="#为什么推荐Array-stream" class="headerlink" title="为什么推荐Array.stream"></a>为什么推荐Array.stream</h2><p>对于对象类型的数组，Array.stream和Stream.of虽然有同样的返回，但是对于基本类型的数组，Stream.of.count返回的数组永远是1</p>
+<p>对于这点可以自行验证。</p>
+<h2 id="无限流"><a href="#无限流" class="headerlink" title="无限流"></a>无限流</h2><p>在Java8的流库中，有两个创建无限流的方法，generate和iterator</p>
+<p>详细可以从另一篇博客《Java流中的generate与iterator》了解</p>
+<h3 id="iterator"><a href="#iterator" class="headerlink" title="iterator"></a>iterator</h3><p>iterator需要我们传入两个参数，<code>seed</code>和<code>initial element seed</code>，一个是初始值，一个是产生无限流的依据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Stream&lt;BigInteger&gt; stream = Stream.iterate(BigInteger.ZERO, n -&gt; n.add(BigInteger.TEN)).limit(<span class="number">100</span>);</span><br><span class="line">System.out.println(Arrays.toString(stream.filter(n -&gt; n.compareTo(<span class="keyword">new</span> BigInteger(String.valueOf(<span class="number">170L</span>))) &lt; <span class="number">0</span>).toArray()));</span><br></pre></td></tr></table></figure>
+
+<h3 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h3><p>generate则需要我们传入一个Supplier对象，里面可以定义规则，比iterator更加灵活</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Stream&lt;Integer&gt; stream1 = Stream.generate(<span class="keyword">new</span> Supplier&lt;Integer&gt;() &#123;</span><br><span class="line">            <span class="keyword">static</span> <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Integer <span class="title">get</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> a++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).limit(<span class="number">20</span>);</span><br><span class="line">        System.out.println(Arrays.toString(stream1.toArray()));</span><br></pre></td></tr></table></figure>
+
+<p>或者说，generate可以根据多个元素制定规则，而iterator只能根据一个元素</p>
+<p>在Java中，产生流的方式还有很多，比如Pattern.splitStream()、Files.lines()</p>
+<p>Pattern.splitStream可以根据正则表达式来分割字符串形成一个流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Pattern.complie(<span class="string">&quot;\\PL+&quot;</span>).splitAsStream(content)</span><br></pre></td></tr></table></figure>
+
+<p>而Files.lines(path)方法则可以返回一个包含文件中所有行的流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>(Stream&lt;String&gt; lines = Files.lines(path))&#123;</span><br><span class="line">    <span class="comment">// Process line</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="章节总结-1"><a href="#章节总结-1" class="headerlink" title="章节总结"></a>章节总结</h2><p>操作流API：</p>
+<ul>
+<li>of(T… values)：根据给定数组产生一个流</li>
+<li>empty()：产生一个空的流</li>
+<li>generate()：产生一个无限流</li>
+<li>iterator()：产生一个无限流</li>
+</ul>
+<p>java.util.Arrays：</p>
+<ul>
+<li>stream(T[] Arrays, int start, int end)：根据数组创建一个流</li>
+</ul>
+<p>java.util.regex.Pattern：</p>
+<ul>
+<li>splitAsStream(CharSequence input)：根据input产生一个流</li>
+</ul>
+<p>java.nio.file.Files：</p>
+<ul>
+<li>stream(Path path, [Charset c])：将指定文件中的行转化为流，并且可以设置指定字符集</li>
+</ul>
+<p>java.util.function.Supplier：</p>
+<ul>
+<li>get()：提供一个值，用于产生无限流</li>
+</ul>
+<h1 id="filter、map和flatMap"><a href="#filter、map和flatMap" class="headerlink" title="filter、map和flatMap"></a>filter、map和flatMap</h1><h2 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h2><p>filter可以从一个流中转换出一个流，其中的元素遵循某种规则，可以在<code>filter()</code>括号中定义这个规则，比如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; words = ...;</span><br><span class="line">Stream&lt;String&gt; longWords = wordList.stream().filter(w -&gt; w.length &gt; <span class="number">12</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这样这个流中就会只包含长度大于12的单词</p>
+<p>filter更像是从一个流中筛选元素，组成另一个流</p>
+<h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>相比于filter，map虽然也是产生一个新的流，但是map是将原来的流中的元素进行转换，比如将words中的单词全部小写</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Stream&lt;String&gt; words = wordList.stream().map(String::toLowerCase);</span><br></pre></td></tr></table></figure>
+
+<p>或者你可以自定义一个函数，如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 核心技术卷II.JavaSe8的流库.流方法;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Collectors;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Stream;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> JiangLiu</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2022/8/10 21:24:52</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">map</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; words = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        words.add(<span class="string">&quot;Abc&quot;</span>);</span><br><span class="line">        words.add(<span class="string">&quot;Bcd&quot;</span>);</span><br><span class="line">        words.add(<span class="string">&quot;Java&quot;</span>);</span><br><span class="line">        words.add(<span class="string">&quot;GoLang&quot;</span>);</span><br><span class="line">        words.add(<span class="string">&quot;Rust&quot;</span>);</span><br><span class="line">        List&lt;String&gt; collect = words.stream().map(String::toLowerCase).collect(Collectors.toList());</span><br><span class="line">        System.out.println(collect);</span><br><span class="line"></span><br><span class="line">        List&lt;List&lt;String&gt;&gt; collect1 = words.stream().map(w -&gt; myMap(w).collect(Collectors.toList())).collect(Collectors.toList());</span><br><span class="line">        System.out.println(collect1);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Stream&lt;String&gt; <span class="title">myMap</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">        List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">            list.add(s.substring(i, i + <span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list.stream();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">[abc, bcd, java, golang, rust]</span><br><span class="line">[[A, b, c], [B, c, d], [J, a, v, a], [G, o, L, a, n, g], [R, u, s, t]]</span><br></pre></td></tr></table></figure>
+
+<p>但是这样每个单词都是一个List，我们可能并不想出现这种情况，这时候flatMap方法就派上用场了</p>
+<h2 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a>flatMap</h2><p>flatMap可以将当前流中的所有元素拼接到一起返回</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; collect2 = words.stream().flatMap(w -&gt; myMap(w)).collect(Collectors.toList());</span><br><span class="line">        System.out.println(collect2);</span><br><span class="line">[A, b, c, B, c, d, J, a, v, a, G, o, L, a, n, g, R, u, s, t]</span><br></pre></td></tr></table></figure>
+
+<h2 id="章节总结-2"><a href="#章节总结-2" class="headerlink" title="章节总结"></a>章节总结</h2><p>java.util.Stream：</p>
+<ul>
+<li>filter：产生一个流，其中包含当前流中所有满足条件的元素</li>
+<li>map(Function&lt;? super T&gt; mapper)：产生一个流，其中包含将mapper应用于流中的每一个元素所产生的结果</li>
+<li>flatMap(Function mapper)：产生一个流，其中包含将mapper应用于流中每一个元素所产生的结果的组合</li>
+</ul>
+<h1 id="抽取子流和连接流"><a href="#抽取子流和连接流" class="headerlink" title="抽取子流和连接流"></a>抽取子流和连接流</h1><h2 id="抽取流"><a href="#抽取流" class="headerlink" title="抽取流"></a>抽取流</h2><p>在介绍无限流的时候，有一个API叫<code>limit()</code>，这个API会产生一个新的流，并且在流运行到第n个元素时结束，对裁剪无限流非常好用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Double&gt; collect = Stream.generate(Math::random).limit(<span class="number">5</span>).collect(Collectors.toList());</span><br><span class="line">System.out.println(collect);</span><br></pre></td></tr></table></figure>
+
+<p>这个流就只包含五个随机数</p>
+<p>而<code>stream.skip(long n)</code>API正好相反，这个API会在跳过前n个元素，对后面的元素进行截取。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; words = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        words.add(<span class="string">&quot;Abc&quot;</span>);</span><br><span class="line">        words.add(<span class="string">&quot;Bcd&quot;</span>);</span><br><span class="line">        words.add(<span class="string">&quot;Java&quot;</span>);</span><br><span class="line">        words.add(<span class="string">&quot;GoLang&quot;</span>);</span><br><span class="line">        words.add(<span class="string">&quot;Rust&quot;</span>);</span><br><span class="line">        List&lt;String&gt; collect1 = words.stream().skip(<span class="number">2</span>).collect(Collectors.toList());</span><br><span class="line">        System.out.println(collect1);</span><br><span class="line"></span><br><span class="line">[Java, GoLang, Rust]</span><br></pre></td></tr></table></figure>
+
+<p>返回的流跳过了前两个元素</p>
+<h2 id="连接流"><a href="#连接流" class="headerlink" title="连接流"></a>连接流</h2><p>如果想要将两个Luis连接起来，可以使用<code>stream.contact(Stream a, Stream b)</code>将两个流进行连接</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Object&gt; collect2 = Stream.concat(collect.stream(), collect1.stream()).collect(Collectors.toList());</span><br><span class="line">        System.out.println(collect2);</span><br><span class="line"></span><br><span class="line">[<span class="number">0.19283510014488758</span>, <span class="number">0.986608060762175</span>, <span class="number">0.07406377892420113</span>, <span class="number">0.6737128935974602</span>, <span class="number">0.5210312651857187</span>, Java, GoLang, Rust]</span><br></pre></td></tr></table></figure>
+
+<h2 id="章节总结-3"><a href="#章节总结-3" class="headerlink" title="章节总结"></a>章节总结</h2><p>本章一共介绍了三个API，两个抽取子流，一个拼接流</p>
+<p>java.util.Stream：</p>
+<ul>
+<li>limit(long maxSize)：抽取流中最初的maxSize个元素，并返回一个新的流</li>
+<li>skip(long n)：抽取流中除了前n个元素之前的元素，并返回一个新的流</li>
+<li>contact(Stream a, Stream b)：拼接两个流，并返回一个新的流</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/JiangLiuJL">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qm.qq.com/cgi-bin/qm/qr?k=ZJIyoBCxTJBHdyrsTC-0bZ6_wV7v8ztt&amp;noverify=0">联系我</a></span>
+        <span>/</span>
+        
+        <span><a href="https://jiangliujl.github.io/about/">JiangLiu&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://giscus.app/client.js"
+    data-repo="aircloud/hexo-aircloud-blog"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkxMjkwNDgyNjg="
+    data-category="Announcements"
+    data-category-id="DIC_kwDOB7EezM4COhKJ"
+    data-mapping="title"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+</script>
+
+
+
+
+</html>
