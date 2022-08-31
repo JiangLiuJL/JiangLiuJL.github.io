@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="江流的博客">
+    <meta property="og:type" content="website">
+    <meta name="description" content="江流的博客">
+    <meta name="keyword"  content="江流的博客，Java开发">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        《正则表达式》 - JiangLiu 日常
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="江流的个人博客" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 一名落魄的Java程序员 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>JiangLiu</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99"><span class="toc-text">语法规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6"><span class="toc-text">字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E9%87%8F%E8%AF%8D"><span class="toc-text">数量词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%B9%E7%95%8C%E5%8C%B9%E9%85%8D"><span class="toc-text">边界匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E6%9E%84%E9%80%A0"><span class="toc-text">特殊构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go%E6%BC%94%E7%A4%BA"><span class="toc-text">Go演示</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 一名落魄的Java程序员 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        《正则表达式》
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2022-08-28 00:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#每天写点啥" title="每天写点啥">每天写点啥</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><p>今天来聊一聊让程序员又爱又恨的正则表达式</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>正则表达式是一种进行模式匹配和文本操作的复杂而又强大的工具，虽然比固定字符匹配要慢，但是胜在灵活，本文中以<code>Go</code>做介绍</p>
+<h2 id="语法规则"><a href="#语法规则" class="headerlink" title="语法规则"></a>语法规则</h2><h3 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h3><table>
+<thead>
+<tr>
+<th>语法</th>
+<th>说明</th>
+<th>表达式示例</th>
+<th>匹配结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一般字符</td>
+<td>匹配自身</td>
+<td>abc</td>
+<td>abc</td>
+</tr>
+<tr>
+<td>.</td>
+<td>匹配任意除换行符”\n”外的字符， 在 DOTALL 模式中也能匹配换行符</td>
+<td>a.c</td>
+<td>abc</td>
+</tr>
+<tr>
+<td>\</td>
+<td>转义字符，使后一个字符改变原来的意思； 如果字符串中有字符 * 需要匹配，可以使用 * 或者字符集［*]。</td>
+<td>a.c a\c</td>
+<td>a.c a\c</td>
+</tr>
+<tr>
+<td>[…]</td>
+<td>字符集（字符类），对应的位置可以是字符集中任意字符。 字符集中的字符可以逐个列出，也可以给出范围，如 [abc] 或 [a-c]， 第一个字符如果是 ^ 则表示取反，如 [^abc] 表示除了abc之外的其他字符。</td>
+<td>a[bcd]e</td>
+<td>abe 或 ace 或 ade</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>数字：[0-9]</td>
+<td>a\dc</td>
+<td>a1c</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>非数字：[^\d]</td>
+<td>a\Dc</td>
+<td>abc</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>空白字符：[&lt;空格&gt;\t\r\n\f\v]</td>
+<td>a\sc</td>
+<td>a c</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>非空白字符：[^\s]</td>
+<td>a\Sc</td>
+<td>abc</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>单词字符：[A-Za-z0-9]</td>
+<td>a\wc</td>
+<td>abc</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>非单词字符：[^\w]</td>
+<td>a\Wc</td>
+<td>a c</td>
+</tr>
+</tbody></table>
+<h3 id="数量词"><a href="#数量词" class="headerlink" title="数量词"></a>数量词</h3><table>
+<thead>
+<tr>
+<th>语法</th>
+<th>说明</th>
+<th>表达式示例</th>
+<th>匹配结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>匹配前一个字符 0 或无限次</td>
+<td>abc*</td>
+<td>ab 或 abccc</td>
+</tr>
+<tr>
+<td>+</td>
+<td>匹配前一个字符 1 次或无限次</td>
+<td>abc+</td>
+<td>abc 或 abccc</td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配前一个字符 0 次或 1 次</td>
+<td>abc?</td>
+<td>ab 或 abc</td>
+</tr>
+<tr>
+<td>{m}</td>
+<td>匹配前一个字符 m 次</td>
+<td>ab{2}c</td>
+<td>abbc</td>
+</tr>
+<tr>
+<td>{m,n}</td>
+<td>匹配前一个字符 m 至 n 次，m 和 n 可以省略，若省略 m，则匹配 0 至 n 次； 若省略 n，则匹配 m 至无限次</td>
+<td>ab{1,2}c</td>
+<td>abc 或 abbc</td>
+</tr>
+</tbody></table>
+<h3 id="边界匹配"><a href="#边界匹配" class="headerlink" title="边界匹配"></a>边界匹配</h3><table>
+<thead>
+<tr>
+<th>语法</th>
+<th>说明</th>
+<th>表达式示例</th>
+<th>匹配结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>^</td>
+<td>匹配字符串开头，在多行模式中匹配每一行的开头</td>
+<td>^abc</td>
+<td>abc</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配字符串末尾，在多行模式中匹配每一行的末尾</td>
+<td>abc$</td>
+<td>abc</td>
+</tr>
+<tr>
+<td>\A</td>
+<td>仅匹配字符串开头</td>
+<td>\Aabc</td>
+<td>abc</td>
+</tr>
+<tr>
+<td>\Z</td>
+<td>仅匹配字符串末尾</td>
+<td>abc\Z</td>
+<td>abc</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配 \w 和 \W 之间</td>
+<td>a\b!bc</td>
+<td>a!bc</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>[^\b]</td>
+<td>a\Bbc</td>
+<td>abc</td>
+</tr>
+</tbody></table>
+<h3 id="特殊构造"><a href="#特殊构造" class="headerlink" title="特殊构造"></a>特殊构造</h3><table>
+<thead>
+<tr>
+<th>语法</th>
+<th>说明</th>
+<th>表达式示例</th>
+<th>匹配结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>(?:…)</td>
+<td>(…) 的不分组版本，用于使用 “|” 或后接数量词</td>
+<td>(?:abc){2}</td>
+<td>abcabc</td>
+</tr>
+<tr>
+<td>(?iLmsux)</td>
+<td>iLmsux 中的每个字符代表一种匹配模式，只能用在正则表达式的开头，可选多个</td>
+<td>(?i)abc</td>
+<td>AbC</td>
+</tr>
+<tr>
+<td>(?#…)</td>
+<td># 后的内容将作为注释被忽略。</td>
+<td>abc(?#comment)123</td>
+<td>abc123</td>
+</tr>
+<tr>
+<td>(?=…)</td>
+<td>之后的字符串内容需要匹配表达式才能成功匹配</td>
+<td>a(?=\d)</td>
+<td>后面是数字的 a</td>
+</tr>
+<tr>
+<td>(?!…)</td>
+<td>之后的字符串内容需要不匹配表达式才能成功匹配</td>
+<td>a(?!\d)</td>
+<td>后面不是数字的 a</td>
+</tr>
+<tr>
+<td>(?&lt;=…)</td>
+<td>之前的字符串内容需要匹配表达式才能成功匹配</td>
+<td>(?&lt;=\d)a</td>
+<td>前面是数字的a</td>
+</tr>
+<tr>
+<td>(?&lt;!…)</td>
+<td>之前的字符串内容需要不匹配表达式才能成功匹配</td>
+<td>(?&lt;!\d)a</td>
+<td>前面不是数字的a</td>
+</tr>
+</tbody></table>
+<h3 id="Go演示"><a href="#Go演示" class="headerlink" title="Go演示"></a>Go演示</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;regexp&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	buf := <span class="string">&quot;abc azc a7c aac 888 a9c tac&quot;</span></span><br><span class="line">	regex := regexp.MustCompile(<span class="string">`a.c`</span>)</span><br><span class="line">	resutl := regex.FindAllStringSubmatch(buf, <span class="number">-1</span>)</span><br><span class="line">	fmt.Println(resutl)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[abc] [azc] [a7c] [aac] [a9c]]</span><br></pre></td></tr></table></figure>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/JiangLiuJL">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qm.qq.com/cgi-bin/qm/qr?k=ZJIyoBCxTJBHdyrsTC-0bZ6_wV7v8ztt&amp;noverify=0">联系我</a></span>
+        <span>/</span>
+        
+        <span><a href="https://jiangliujl.github.io/about/">JiangLiu&#39;s Page</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://giscus.app/client.js"
+    data-repo="aircloud/hexo-aircloud-blog"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkxMjkwNDgyNjg="
+    data-category="Announcements"
+    data-category-id="DIC_kwDOB7EezM4COhKJ"
+    data-mapping="title"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+</script>
+
+
+
+
+</html>
