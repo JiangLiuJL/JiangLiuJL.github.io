@@ -85,21 +85,6 @@
   </entry>
   
   <entry>
-    <title>《F# 模式匹配》</title>
-    <link href="https://jiangliujl.github.io/2022/08/28/F#%E7%9A%84%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/"/>
-    <id>https://jiangliujl.github.io/2022/08/28/F#%E7%9A%84%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/</id>
-    <published>2022-08-27T16:00:00.000Z</published>
-    <updated>2022-10-15T13:33:23.981Z</updated>
-    
-    
-    
-    
-    
-    <category term="每天写点啥" scheme="https://jiangliujl.github.io/tags/%E6%AF%8F%E5%A4%A9%E5%86%99%E7%82%B9%E5%95%A5/"/>
-    
-  </entry>
-  
-  <entry>
     <title>《Java流操作》——读书笔记</title>
     <link href="https://jiangliujl.github.io/2022/08/10/Java%E6%B5%81%E6%93%8D%E4%BD%9C/"/>
     <id>https://jiangliujl.github.io/2022/08/10/Java%E6%B5%81%E6%93%8D%E4%BD%9C/</id>
@@ -171,31 +156,6 @@
     
     
     <category term="每天写点啥" scheme="https://jiangliujl.github.io/tags/%E6%AF%8F%E5%A4%A9%E5%86%99%E7%82%B9%E5%95%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《Redis实现客户端缓存》</title>
-    <link href="https://jiangliujl.github.io/2022/07/31/redis%E5%AE%9E%E7%8E%B0%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%BC%93%E5%AD%98/"/>
-    <id>https://jiangliujl.github.io/2022/07/31/redis%E5%AE%9E%E7%8E%B0%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%BC%93%E5%AD%98/</id>
-    <published>2022-07-30T16:00:00.000Z</published>
-    <updated>2022-07-31T04:44:01.240Z</updated>
-    
-    <content type="html"><![CDATA[<p>在redis中，客户端缓存支持又被成为跟踪，有两种实现模式：</p><ul><li>在默认模式下，服务器会记住给定客户端访问的键，并且在相同的键被修改时发送无效信息。这将占用服务器端内存，但是只会为客户端内存中可能存在的一组键发送无效信息</li><li>在广播模式下，服务器不会试图记住给定客户端访问的键，因此这种模式在服务器客户端不消耗任何内存。而客户端通过订阅前缀如<code>object:</code>或<code>user:</code>，并在键匹配订阅前缀是接收通知消息</li></ul><h1 id="默认模式"><a href="#默认模式" class="headerlink" title="默认模式"></a>默认模式</h1>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在redis中，客户端缓存支持又被成为跟踪，有两种实现模式：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;在默认模式下，服务器会记住给定客户端访问的键，并且在相同的键被修改时发送无效信息。这将占用服务器端内存，但是只会为客户端内存中可能存在的一组键发送无效信息&lt;/li&gt;
-&lt;li&gt;在广播模式下</summary>
-      
-    
-    
-    
-    
-    <category term="Redis" scheme="https://jiangliujl.github.io/tags/Redis/"/>
     
   </entry>
   
