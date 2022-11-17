@@ -13,7 +13,7 @@
 
     <title>
         
-        《MyBatisPlus 常用注解》 - JiangLiu 日常
+        《F# 模式匹配》 - JiangLiu 日常
         
     </title>
 
@@ -102,7 +102,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TableName"><span class="toc-text">@TableName</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TableId"><span class="toc-text">@TableId</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Type%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="toc-text">Type属性值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TableField"><span class="toc-text">@TableField</span></a></li></ol></li></ol>
+    
 </div>
     
 </div>
@@ -133,18 +133,15 @@
 
 <div class="post-container">
     <div class="post-title">
-        《MyBatisPlus 常用注解》
+        《F# 模式匹配》
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2022-07-15 00:00:00</span></span>
+        <span class="attr">发布于：<span>2022-08-28 00:00:00</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#注解" title="注解">注解</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#MyBatis Plus" title="MyBatis Plus">MyBatis Plus</a>
+        <a class="tag" href="/tags/#每天写点啥" title="每天写点啥">每天写点啥</a>
         <span>/</span>
         
         
@@ -154,47 +151,7 @@
 </span>
     </div>
     <div class="post-content no-indent">
-        <h1 id="TableName"><a href="#TableName" class="headerlink" title="@TableName"></a>@TableName</h1><p>用法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableName(&quot;sys_user&quot;)</span></span><br></pre></td></tr></table></figure>
-
-<p>描述：表名注解，标识实体类对应表</p>
-<p>使用位置：实体类类注解</p>
-<p>属性：</p>
-<ul>
-<li>value：表名</li>
-<li>schema：用来指定模式名称，如果使用的是mysql，则指定数据库名称，如果使用oracle，则为schema</li>
-<li>keepGlobalPrefix：是否保持使用全局的tablePrefix的值</li>
-<li>resultMap：xml中resultMap的id</li>
-<li>autoResultMap：是否自动构建ResultMap</li>
-<li>excludeProperty：需要排除的属性名</li>
-</ul>
-<h1 id="TableId"><a href="#TableId" class="headerlink" title="@TableId"></a>@TableId</h1><p>用法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableId(value=&quot;user_id&quot;, type=IdType.ASSIGN_UUID)</span></span><br></pre></td></tr></table></figure>
-
-<p> 描述：主键属性</p>
-<p>使用位置：实体类主键字段</p>
-<p>属性：</p>
-<ul>
-<li>value：主键字段名</li>
-<li>type：指定主键类型</li>
-</ul>
-<h2 id="Type属性值"><a href="#Type属性值" class="headerlink" title="Type属性值"></a>Type属性值</h2><ul>
-<li>AUTO：数据库ID自增</li>
-<li>NONE：无状态，未设置主键类型（跟随全局，全局默认为INPUT）</li>
-<li>INPUT：insert前自行设置</li>
-<li>ASSIGN_ID：分配ID，使用接口<code>IdentifierGenerator</code>的<code>nextId</code>，实现类默认为雪花算法</li>
-<li>ASSIGN_UUID：分配UUID</li>
-</ul>
-<h2 id="TableField"><a href="#TableField" class="headerlink" title="@TableField"></a>@TableField</h2><p>用法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableName(&quot;sys_user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@TableId</span></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="meta">@TableField(&quot;nickname&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>描述：字段注解（非主键）</p>
-<p>属性：</p>
-<ul>
-<li>value：数据库字段名</li>
-<li>exist：是否为数据库字段</li>
-</ul>
-
+        
         
         <br />
         <div id="comment-container">

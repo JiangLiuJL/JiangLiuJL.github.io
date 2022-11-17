@@ -6,7 +6,7 @@
   <link href="https://jiangliujl.github.io/atom.xml" rel="self"/>
   
   <link href="https://jiangliujl.github.io/"/>
-  <updated>2022-09-24T04:04:12.305Z</updated>
+  <updated>2022-11-16T09:22:41.687Z</updated>
   <id>https://jiangliujl.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《SpringCloud》——Cloud五大组件</title>
+    <link href="https://jiangliujl.github.io/2022/11/14/SpringCloud%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94cloud%E4%BA%94%E5%A4%A7%E7%BB%84%E4%BB%B6/"/>
+    <id>https://jiangliujl.github.io/2022/11/14/SpringCloud%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94cloud%E4%BA%94%E5%A4%A7%E7%BB%84%E4%BB%B6/</id>
+    <published>2022-11-13T16:00:00.000Z</published>
+    <updated>2022-11-16T09:22:41.687Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h1><p>SpringCloud是微服务系统架构的一站式解决方案，基于SpringBoot。</p><p>SpringCloud并不是一个框架，而是一系列框架的集合，包含了世面上较好的微服务框架</p><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点：</p><ul><li>耦合度低，各个服务之间不会直接调用，一定程度上减轻了雪崩问题</li><li>降低了开发成本，各个服务之间独立开发</li><li>跨平台，可以用任何一种语言进行开发</li><li>各个服务之间可以使用不同的数据库，也可以使用公用数据库</li></ul><p>缺点：</p><ul><li>由于服务粒度小，维护成本相对比较高</li><li>数据管理比较麻烦</li><li>性能监控比较麻烦</li></ul><h2 id="五大组件"><a href="#五大组件" class="headerlink" title="五大组件"></a>五大组件</h2><p>SpringCloud有五大常用组件：</p><ul><li>注册中心组件，常用：Eureka、nacos</li><li>客户端负载均衡，常用：Ribbon</li><li>断路器组件，常用：Hystrix</li><li>服务网关，常用：Zuul</li><li>分布式配置，常用：SpringCloudConfig、Apollo</li></ul><h2 id="各大组件的作用"><a href="#各大组件的作用" class="headerlink" title="各大组件的作用"></a>各大组件的作用</h2><h3 id="注册中心"><a href="#注册中心" class="headerlink" title="注册中心"></a>注册中心</h3><p>注册中心，用于服务发现与服务注册，为了解耦服务提供者与服务消费者</p><h4 id="透明化路由"><a href="#透明化路由" class="headerlink" title="透明化路由"></a>透明化路由</h4><p>在分布式微服务架构中，各个服务之间需要相互调用，但是不需要通过硬编码的方式去调用服务提供者的服务，而是通过注册中心主动查询和被动通知的方式获取服务提供者的地址信息，消费者只需要知道哪个系统发布了什么服务，不需要清楚服务存在于什么位置，这就叫<strong>透明化路由</strong>。</p><p>为了实现透明化路由，注册中心需要存储服务提供者的信息、服务发布相关的属性信息，消费者通过主动查询和被动通知的方式获取服务提供者的地址信息</p><hr><p>如果需要了解为什么需要注册中心，可以去看一下微服务的发展历史</p><h3 id="客户端负载均衡"><a href="#客户端负载均衡" class="headerlink" title="客户端负载均衡"></a>客户端负载均衡</h3><p>负载均衡：指单台服务器达到性能瓶颈时，通过横向拓展服务器来增加系统的吞吐量</p><p>客户端负载均衡出现在cloud之后，最常见的就是ribbon，通常和Eureka一起使用，发送请求前，ribbon会去Eureka获取服务端列表，然后通过负载均衡算法选择一个服务器进行访问，即在客户端完成负载均衡分配。</p><h3 id="断路器组件"><a href="#断路器组件" class="headerlink" title="断路器组件"></a>断路器组件</h3><h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><p>在微服务架构中，我们会将业务拆分成一个个服务，服务与服务之间通过RPC相互调用，</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;SpringCloud&quot;&gt;&lt;a href=&quot;#SpringCloud&quot; class=&quot;headerlink&quot; title=&quot;SpringCloud&quot;&gt;&lt;/a&gt;SpringCloud&lt;/h1&gt;&lt;p&gt;SpringCloud是微服务系统架构的一站式解决方案，基于Spri</summary>
+      
+    
+    
+    
+    
+    <category term="SpringCloud" scheme="https://jiangliujl.github.io/tags/SpringCloud/"/>
+    
+  </entry>
   
   <entry>
     <title>《Feign远程调用返回对象变成了LinkedHashMap》</title>
@@ -54,6 +76,21 @@
     <summary type="html">&lt;h1 id=&quot;正则表达式&quot;&gt;&lt;a href=&quot;#正则表达式&quot; class=&quot;headerlink&quot; title=&quot;正则表达式&quot;&gt;&lt;/a&gt;正则表达式&lt;/h1&gt;&lt;p&gt;今天来聊一聊让程序员又爱又恨的正则表达式&lt;/p&gt;
 &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;</summary>
       
+    
+    
+    
+    
+    <category term="每天写点啥" scheme="https://jiangliujl.github.io/tags/%E6%AF%8F%E5%A4%A9%E5%86%99%E7%82%B9%E5%95%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《F# 模式匹配》</title>
+    <link href="https://jiangliujl.github.io/2022/08/28/F#%E7%9A%84%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/"/>
+    <id>https://jiangliujl.github.io/2022/08/28/F#%E7%9A%84%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/</id>
+    <published>2022-08-27T16:00:00.000Z</published>
+    <updated>2022-10-15T13:33:23.981Z</updated>
+    
     
     
     
@@ -287,11 +324,11 @@
   </entry>
   
   <entry>
-    <title>《MybatisPlus 常用注解》</title>
+    <title>《MyBatisPlus 常用注解》</title>
     <link href="https://jiangliujl.github.io/2022/07/15/mybatisplus%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/"/>
     <id>https://jiangliujl.github.io/2022/07/15/mybatisplus%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/</id>
     <published>2022-07-14T16:00:00.000Z</published>
-    <updated>2022-08-17T01:48:36.409Z</updated>
+    <updated>2022-11-17T01:15:09.686Z</updated>
     
     <content type="html"><![CDATA[<h1 id="TableName"><a href="#TableName" class="headerlink" title="@TableName"></a>@TableName</h1><p>用法</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableName(&quot;sys_user&quot;)</span></span><br></pre></td></tr></table></figure><p>描述：表名注解，标识实体类对应表</p><p>使用位置：实体类类注解</p><p>属性：</p><ul><li>value：表名</li><li>schema：用来指定模式名称，如果使用的是mysql，则指定数据库名称，如果使用oracle，则为schema</li><li>keepGlobalPrefix：是否保持使用全局的tablePrefix的值</li><li>resultMap：xml中resultMap的id</li><li>autoResultMap：是否自动构建ResultMap</li><li>excludeProperty：需要排除的属性名</li></ul><h1 id="TableId"><a href="#TableId" class="headerlink" title="@TableId"></a>@TableId</h1><p>用法</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableId(value=&quot;user_id&quot;, type=IdType.ASSIGN_UUID)</span></span><br></pre></td></tr></table></figure><p> 描述：主键属性</p><p>使用位置：实体类主键字段</p><p>属性：</p><ul><li>value：主键字段名</li><li>type：指定主键类型</li></ul><h2 id="Type属性值"><a href="#Type属性值" class="headerlink" title="Type属性值"></a>Type属性值</h2><ul><li>AUTO：数据库ID自增</li><li>NONE：无状态，未设置主键类型（跟随全局，全局默认为INPUT）</li><li>INPUT：insert前自行设置</li><li>ASSIGN_ID：分配ID，使用接口<code>IdentifierGenerator</code>的<code>nextId</code>，实现类默认为雪花算法</li><li>ASSIGN_UUID：分配UUID</li></ul><h2 id="TableField"><a href="#TableField" class="headerlink" title="@TableField"></a>@TableField</h2><p>用法</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableName(&quot;sys_user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@TableId</span></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="meta">@TableField(&quot;nickname&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>描述：字段注解（非主键）</p><p>属性：</p><ul><li>value：数据库字段名</li><li>exist：是否为数据库字段</li></ul>]]></content>
     
@@ -307,7 +344,7 @@
     
     <category term="注解" scheme="https://jiangliujl.github.io/tags/%E6%B3%A8%E8%A7%A3/"/>
     
-    <category term="Mybatis Plus" scheme="https://jiangliujl.github.io/tags/Mybatis-Plus/"/>
+    <category term="MyBatis Plus" scheme="https://jiangliujl.github.io/tags/MyBatis-Plus/"/>
     
   </entry>
   
