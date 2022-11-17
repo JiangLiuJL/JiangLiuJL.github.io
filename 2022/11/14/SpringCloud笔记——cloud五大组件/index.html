@@ -102,7 +102,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringCloud"><span class="toc-text">SpringCloud</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="toc-text">五大组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E5%A4%A7%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">各大组件的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-text">注册中心</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%8F%E6%98%8E%E5%8C%96%E8%B7%AF%E7%94%B1"><span class="toc-text">透明化路由</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-text">客户端负载均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E8%B7%AF%E5%99%A8%E7%BB%84%E4%BB%B6"><span class="toc-text">断路器组件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a></li></ol></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringCloud"><span class="toc-text">SpringCloud</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="toc-text">五大组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E5%A4%A7%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">各大组件的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-text">注册中心</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%8F%E6%98%8E%E5%8C%96%E8%B7%AF%E7%94%B1"><span class="toc-text">透明化路由</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-text">客户端负载均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E8%B7%AF%E5%99%A8%E7%BB%84%E4%BB%B6"><span class="toc-text">断路器组件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-text">实现原理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%BD%91%E5%85%B3"><span class="toc-text">服务网关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%85%8D%E7%BD%AE"><span class="toc-text">分布式配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%88%86%E5%B8%83%E5%BC%8F%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-text">为什么需要分布式配置中心</span></a></li></ol></li></ol></li></ol></li></ol>
 </div>
     
 </div>
@@ -181,7 +181,40 @@
 <p>如果需要了解为什么需要注册中心，可以去看一下微服务的发展历史</p>
 <h3 id="客户端负载均衡"><a href="#客户端负载均衡" class="headerlink" title="客户端负载均衡"></a>客户端负载均衡</h3><p>负载均衡：指单台服务器达到性能瓶颈时，通过横向拓展服务器来增加系统的吞吐量</p>
 <p>客户端负载均衡出现在cloud之后，最常见的就是ribbon，通常和Eureka一起使用，发送请求前，ribbon会去Eureka获取服务端列表，然后通过负载均衡算法选择一个服务器进行访问，即在客户端完成负载均衡分配。</p>
-<h3 id="断路器组件"><a href="#断路器组件" class="headerlink" title="断路器组件"></a>断路器组件</h3><h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><p>在微服务架构中，我们会将业务拆分成一个个服务，服务与服务之间通过RPC相互调用，</p>
+<center>2022-11-17</center>
+
+<hr>
+<h3 id="断路器组件"><a href="#断路器组件" class="headerlink" title="断路器组件"></a>断路器组件</h3><h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><p>在微服务架构中，我们会将业务拆分成一个个服务，服务与服务之间通过RPC相互调用，这里就存在着一个隐患，假设现有A B C三个服务，三个服务的相互调用关系如下</p>
+<p><img src="../img/image-20221117143032424.png" alt="image-20221117143032424"></p>
+<p>A服务需要调用B服务的某个接口，B服务又要调用C服务的某个接口</p>
+<p>某一天，C服务宕机了</p>
+<p><img src="../img/image-20221117144144216.png" alt="image-20221117144144216"></p>
+<p>刚好这时B服务有大量的请求进来了，这些请求都需要去请求C服务，会造成B服务的IO阻塞，于是B服务也宕机了，最终A服务也会宕机，这就是Cloud的雪崩问题</p>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p>引入断路器组件就可以很好的解决这个问题，最常用的断路器就是Hystrix，那么Hystrix如何做到这一点：</p>
+<ul>
+<li>对所有的外部系统调用包装在一个<code>HystrixCommand</code>或<code>HystrixObservableCommand</code>中，该对象通常在单独的线程中执行</li>
+<li>在配置中我们可以指定一个调用阈值，对于超过阈值的调用，会返回失败</li>
+<li>为每个依赖项维护一个小的线程池；如果该线程池已满，发往该依赖的请求将立即被拒绝，而不会排队</li>
+<li>测量成功、失败、超时和线程拒绝</li>
+<li>如果服务的失败百分比超过阈值，则手动或自动触发断路器以停止对这个服务的请求一段时间</li>
+<li>当请求失败、被拒绝、超时或短路时执行回退逻辑</li>
+<li>近乎实时监控指标和配置变化</li>
+</ul>
+<h3 id="服务网关"><a href="#服务网关" class="headerlink" title="服务网关"></a>服务网关</h3><p>网关是微服务架构中的一个关键角色，用于保护、增强和控制对于微服务的访问，网关是一个处于应用程序和微服务之前的系统，用于管理授权、访问控制和流量限制，这样微服务就会被网关保护起来，对于调用者不透明</p>
+<p>作用：</p>
+<ul>
+<li>身份验证和安全性——识别每个资源的身份验证要求，并拒绝不满足的请求</li>
+<li>洞察力和监控——在边缘跟踪有意义的数据和统计数据，以便我们准确了解生产情况</li>
+<li>动态路由——根据需要动态地将请求路由到不同的后端集群</li>
+<li>压力测试——逐渐增加集群的流量以衡量性能</li>
+<li>减轻负载——为每种类型的请求分配容量并丢弃超过限制的请求</li>
+<li>静态响应处理——直接在边缘构建一些响应，而不是将它们转发到内部集群</li>
+<li>多区域弹性——跨AWS区域路由请求，以分散我们的ELB使用</li>
+</ul>
+<h3 id="分布式配置"><a href="#分布式配置" class="headerlink" title="分布式配置"></a>分布式配置</h3><p>相比于其他组件，分布式配置中心很好理解，就是把原来服务中的properties文件分理出自身的系统，并且让这些信息能够被实时获取</p>
+<h4 id="为什么需要分布式配置中心"><a href="#为什么需要分布式配置中心" class="headerlink" title="为什么需要分布式配置中心"></a>为什么需要分布式配置中心</h4><p>使用分布式配置中心，可以在不同节点上设置不同的额皮质，并且对各种配置进行相应的操作。</p>
+<hr>
+<p>以后会把这些组件进行详细介绍（先画个饼，能不能填上以后再说）</p>
 
         
         <br />
