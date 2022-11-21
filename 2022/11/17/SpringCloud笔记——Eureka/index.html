@@ -188,7 +188,7 @@
 </li>
 </ul>
 <h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>运行好后，可以直接去<code>localhost:8080</code>查看，但是上面还没注册任何服务，如图</p>
-<p><img src="SpringCloud%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94Eureka.assets/image-20221121152143741.png" alt="image-20221121152143741"></p>
+<p><img src="/img/image-20221121160348362.png" alt="image-20221121160348362"></p>
 <h2 id="注册服务提供者"><a href="#注册服务提供者" class="headerlink" title="注册服务提供者"></a>注册服务提供者</h2><h3 id="pom依赖-1"><a href="#pom依赖-1" class="headerlink" title="pom依赖"></a>pom依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="启动类-1"><a href="#启动类-1" class="headerlink" title="启动类"></a>启动类</h3><p>同样，Eureka客户端也需要加上一个注解<code>@EnableEurekaClient</code></p>
@@ -207,7 +207,7 @@
 </li>
 </ul>
 <h3 id="运行-1"><a href="#运行-1" class="headerlink" title="运行"></a>运行</h3><p>然后到<code>http://localhost:8080</code>上，可以看到<code>userInfoApplication</code>服务已经注册上去了</p>
-<p><img src="SpringCloud%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94Eureka.assets/image-20221121152103615.png" alt="image-20221121152103615"></p>
+<p><img src="/img/image-20221121143143516.png" alt="image-20221121143143516"></p>
 <center>2022-11-21</center>
 
 <hr>
