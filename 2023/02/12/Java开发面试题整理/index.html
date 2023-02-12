@@ -13,7 +13,7 @@
 
     <title>
         
-        《SpringCloud》——详解Ribbon - JiangLiu 日常
+        《Java后端面试大全》 - JiangLiu 日常
         
     </title>
 
@@ -102,7 +102,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3"><span class="toc-text">相关文档</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFRibbon"><span class="toc-text">什么是Ribbon</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-text">负载均衡</span></a></li></ol>
+    
 </div>
     
 </div>
@@ -133,15 +133,15 @@
 
 <div class="post-container">
     <div class="post-title">
-        《SpringCloud》——详解Ribbon
+        《Java后端面试大全》
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2022-11-24 00:00:00</span></span>
+        <span class="attr">发布于：<span>2023-02-12 00:00:00</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#SpringCloud" title="SpringCloud">SpringCloud</a>
+        <a class="tag" href="/tags/#Java" title="Java">Java</a>
         <span>/</span>
         
         
@@ -151,18 +151,21 @@
 </span>
     </div>
     <div class="post-content no-indent">
-        <p><del>Ribbon来喽</del></p>
-<h1 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h1><h1 id="什么是Ribbon"><a href="#什么是Ribbon" class="headerlink" title="什么是Ribbon"></a>什么是Ribbon</h1><p>Ribbon是一个在Cloud中经过实战测试的IPC库，提供以下功能：</p>
+        <p>JDK、JRE、JVM之间的区别和联系</p>
 <ul>
-<li>客户端负载均衡</li>
-<li>容错性</li>
-<li>异步和反应模型中的多协议支持（HTTP、TCP、UDP）</li>
-<li>缓存和批处理</li>
+<li>JDK是Java语言的软件开发工具包，它提供了Java编译、运行所需的各种工具和资源，包括Java编译器，运行时环境以及常用的Java类库等</li>
+<li>JRE是Java的运行环境，包含了JVM的标准实现和Java的核心类库，并不是开发环境</li>
+<li>JVM是Java运行时的环境，即Java虚拟机，它是Java实现跨平台最核心的部分，负责运行字节码文件</li>
 </ul>
-<p>SpringCloud Ribbon是基于Netflix Ribbon实现的一套客户端负载均衡的工具，能够自动基于某种规则去调用这些服务，也可以使用我们自己的负载均衡算法。</p>
-<p>Ribbon虽然是一个组件，但是并不需要像注册中心那样独立部署，它几乎存在于每一个SpringCloud中，因为IPC调用基本都是通过它来实现。</p>
-<h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h1><p>负载均衡分为服务端和客户端负载均衡。</p>
-<p>硬件负载均衡又分为硬件负载均衡和软件负载均衡，不管是硬件还是软件，他们都会在自身维护一个服务实例清单，当需要发送请求时，根据负载均衡算法判断现在需要访问哪个服务实例，再进行转发。</p>
+<p>hashcode()与equals()的联系</p>
+<ul>
+<li>hashcode和equals都可以作为判断两个对象是否相同的判断标准，<strong>通常来说</strong>：<ul>
+<li>如果两个对象的hashcode不同，那两个对象一定不同</li>
+<li>如果hashcode相同，两个对象也不一定相同</li>
+<li>如果两个对象相同，那么它们的hashcode也一定相同</li>
+</ul>
+</li>
+</ul>
 
         
         <br />
