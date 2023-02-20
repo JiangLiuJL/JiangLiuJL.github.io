@@ -102,7 +102,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3"><span class="toc-text">相关文档</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFRibbon"><span class="toc-text">什么是Ribbon</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-text">负载均衡</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3"><span class="toc-text">相关文档</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFRibbon"><span class="toc-text">什么是Ribbon</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-text">负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-text">区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8%E5%8F%AF%E8%83%BD%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">初次使用可能存在的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#java-net-UnknownHostException"><span class="toc-text">java.net.UnknownHostException</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">解决方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-instances-available-for-userInfoApplication"><span class="toc-text">No instances available for userInfoApplication</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0%E4%B8%80"><span class="toc-text">原因一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0%E4%BA%8C"><span class="toc-text">原因二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0%E4%B8%89"><span class="toc-text">原因三</span></a></li></ol></li></ol></li></ol>
 </div>
     
 </div>
@@ -161,8 +161,46 @@
 </ul>
 <p>SpringCloud Ribbon是基于Netflix Ribbon实现的一套客户端负载均衡的工具，能够自动基于某种规则去调用这些服务，也可以使用我们自己的负载均衡算法。</p>
 <p>Ribbon虽然是一个组件，但是并不需要像注册中心那样独立部署，它几乎存在于每一个SpringCloud中，因为IPC调用基本都是通过它来实现。</p>
-<h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h1><p>负载均衡分为服务端和客户端负载均衡。</p>
-<p>硬件负载均衡又分为硬件负载均衡和软件负载均衡，不管是硬件还是软件，他们都会在自身维护一个服务实例清单，当需要发送请求时，根据负载均衡算法判断现在需要访问哪个服务实例，再进行转发。</p>
+<h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h1><p>负载均衡在微服务架构中是一个很重要的组件，是对系统的高可用、环节网络压力和服务器扩容的重要手段之一。</p>
+<p>负载均衡又分为客户端负载均衡和服务端负载均衡，而我们说的一般是指<strong>服务端负载均衡</strong>，架构如下：</p>
+<p><img src="/img/image-20230213151146518.png" alt="image-20230213151146518"></p>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>客户端和服务端的负载均衡，最大的不同点就是服务清单存储的位置：</p>
+<ul>
+<li>在客户端负载均衡中，每一个客户端都维护者一份自己要访问的服务清单</li>
+<li>而在服务端中，这些服务器的清单来自于注册中心，比如<em>Eureka</em></li>
+</ul>
+<p>和服务端一样，客户端也需要心跳去维护服务清单的健康性</p>
+<hr>
+
+<p>在SpringCloud实现的服务治理框架中，默认会对各个服务治理框架的Ribbon自动化整合配置，比如Eureka的<code>org.springframework.cloud.netflix.ribbon.eureka.RibbinEurekaAutoConfiguration</code></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>通过Spring Cloud Ribbon的封装，我们使用负载均衡会变得很简单：</p>
+<ol>
+<li>服务提供者只需要启动多个服务实例并且注册到一个注册中心或是多个相关联的注册中心</li>
+<li>服务消费者直接通过调用被<code>@LoadBalanced</code>注解修饰过的<code>RestTemplate</code>来实现服务接口的调用</li>
+</ol>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>首先启动多个其他实例，并且注册到注册中心</p>
+<p><img src="/img/image-20230220164517822.png" alt="image-20230220164517822"></p>
+<p>将RestTemplate交给Spring管理，并且加上<code>@LoadBalanced</code>注解用于开启负载均衡</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@LoadBalanced</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RestTemplate <span class="title">restTemplate</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用RestTemplate请求服务</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ResponseEntity&lt;String&gt; responseEntity = restTemplate.getForEntity(</span><br><span class="line">                <span class="string">&quot;http://userInfoApplication/v1/user/userInfo/getMethod/我是参数&quot;</span>, String.class</span><br><span class="line">        );</span><br><span class="line">        <span class="keyword">return</span> responseEntity.getBody();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注</strong>：由于Ribbon已经被集成在spring-cloud-starter-netflix-eureka-client中了，不需要单独引入spring-cloud-starter-netflix-ribbon，否则容易造成依赖冲突</p>
+<hr>
+<h1 id="初次使用可能存在的问题"><a href="#初次使用可能存在的问题" class="headerlink" title="初次使用可能存在的问题"></a>初次使用可能存在的问题</h1><h2 id="java-net-UnknownHostException"><a href="#java-net-UnknownHostException" class="headerlink" title="java.net.UnknownHostException"></a>java.net.UnknownHostException</h2><p>初次使用Ribbon做负载均衡，利用RestTemplate请求接口可能会出现这个报错，这可能是因为RestTemplate没有用<code>@LoadBalanced</code>注解进行修饰，这个注解可以开启客户端的负载均衡</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@LoadBalanced</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RestTemplate <span class="title">restTemplate</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将RestTemplate封装成一个bean交给Spring进行管理，使用<code>@LoadBalanced</code>注解进行修饰</p>
+<h2 id="No-instances-available-for-userInfoApplication"><a href="#No-instances-available-for-userInfoApplication" class="headerlink" title="No instances available for userInfoApplication"></a>No instances available for userInfoApplication</h2><p>这里可能有几个原因</p>
+<h3 id="原因一"><a href="#原因一" class="headerlink" title="原因一"></a>原因一</h3><p>服务提供方没有注册到注册中心，可以打开注册中心的管理界面看一下</p>
+<p><img src="/img/image-20230217172953716.png" alt="image-20230217172953716"></p>
+<p>比如这里<code>FILEAPPLICATION</code>是服务调用方，<code>USERINFOAPPLICATION</code>是服务提供方，双方都需要注册到注册中心</p>
+<h3 id="原因二"><a href="#原因二" class="headerlink" title="原因二"></a>原因二</h3><p>如果注册中心上有双方的数据了，看一下服务调用方的<code>properties</code>配置文件，有没有把获取服务的配置禁用</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">fetch-registry:</span> <span class="literal">true</span> <span class="comment"># 从注册中心获取注册信息，默认true</span></span><br></pre></td></tr></table></figure>
+
+<p>这里默认是true，不要改为false</p>
+<h3 id="原因三"><a href="#原因三" class="headerlink" title="原因三"></a>原因三</h3><p>重复引入ribbon造成的依赖冲突，在springcloud中，ribbon已经被集成在<code>spring-cloud-starter-netflix-eureka-client</code>中了，不需要单独引入<code>spring-cloud-starter-netflix-ribbon</code>，springcloud在2020.0.0之后，将依赖改成了<code>spring-cloud-starter-loadbalancer</code></p>
 
         
         <br />

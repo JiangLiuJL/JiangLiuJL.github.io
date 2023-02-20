@@ -13,7 +13,7 @@
 
     <title>
         
-        《Java后端面试大全》 - JiangLiu 日常
+        《SpringBoot常用注解》 - JiangLiu 日常
         
     </title>
 
@@ -102,7 +102,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringCloud%E9%A1%B9%E7%9B%AE%E6%9C%AC%E8%BA%AB"><span class="toc-text">SpringCloud项目本身</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#iml%E6%96%87%E4%BB%B6%E5%BC%95%E5%8F%91%E7%9A%84%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99"><span class="toc-text">iml文件引发的启动报错</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%B7%E5%9B%A0"><span class="toc-text">起因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0"><span class="toc-text">报错原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-text">解决办法</span></a></li></ol></li></ol></li></ol>
 </div>
     
 </div>
@@ -133,15 +133,15 @@
 
 <div class="post-container">
     <div class="post-title">
-        《Java后端面试大全》
+        《SpringBoot常用注解》
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2023-02-12 00:00:00</span></span>
+        <span class="attr">发布于：<span>2023-02-15 00:00:00</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+        <a class="tag" href="/tags/#SpringCloud" title="SpringCloud">SpringCloud</a>
         <span>/</span>
         
         
@@ -151,33 +151,20 @@
 </span>
     </div>
     <div class="post-content no-indent">
-        <p>JDK、JRE、JVM之间的区别和联系</p>
-<ul>
-<li>JDK是Java语言的软件开发工具包，它提供了Java编译、运行所需的各种工具和资源，包括Java编译器，运行时环境以及常用的Java类库等</li>
-<li>JRE是Java的运行环境，包含了JVM的标准实现和Java的核心类库，并不是开发环境</li>
-<li>JVM是Java运行时的环境，即Java虚拟机，它是Java实现跨平台最核心的部分，负责运行字节码文件</li>
-</ul>
-<hr>
-<p>hashcode()与equals()的联系</p>
-<ul>
-<li>hashcode和equals都可以作为判断两个对象是否相同的判断标准，：<ul>
-<li>如果两个对象的hashcode不同，那两个对象一定不同</li>
-<li>如果hashcode相同，两个对象也不一定相同</li>
-<li>如果两个对象相同，那么它们的hashcode也一定相同</li>
-</ul>
-</li>
-</ul>
-<p>在Java一些集合类或者工具包的视线中，有判断对象是否相等的一些工具函数，里面通常会先去判断hashcode，如果hashcode相同，再去使用equals进行比较</p>
-<hr>
-<p>String、StringBuffer、StringBuilder区别</p>
-<ul>
-<li><p>String、StringBuffer、StringBuilder三个类都提供了</p>
-</li>
-<li><p>在Java中，String作为典型的引用型变量，是不可变的，如果改变变量的值，只会改变堆中指针的指向，并不会改变常量池中的值</p>
-</li>
-<li><p>因此，Java提供了两个可变字符串类StringBuffer和StringBuilder</p>
-</li>
-</ul>
+        <h1 id="SpringCloud项目本身"><a href="#SpringCloud项目本身" class="headerlink" title="SpringCloud项目本身"></a>SpringCloud项目本身</h1><h2 id="iml文件引发的启动报错"><a href="#iml文件引发的启动报错" class="headerlink" title="iml文件引发的启动报错"></a>iml文件引发的启动报错</h2><h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>在学习SpringCloud Ribbon的时候，创建了多个微服务项目，并且有一个项目专门给其他项目提供依赖、常量类，但是某一个项目一直启动不起来，一直报<code>没有为模块指定输出路径</code>（常量类模块）的问题。</p>
+<h3 id="报错原因"><a href="#报错原因" class="headerlink" title="报错原因"></a>报错原因</h3><p>比对了报错项目和其他项目的不同之处，发现了创建的iml文件不太一样</p>
+<p>正常项目:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;module version=&quot;4&quot;&gt;</span><br><span class="line">  &lt;component name=&quot;FacetManager&quot;&gt;</span><br><span class="line">    &lt;facet type=&quot;Spring&quot; name=&quot;Spring&quot;&gt;</span><br><span class="line">      &lt;configuration /&gt;</span><br><span class="line">    &lt;/facet&gt;</span><br><span class="line">  &lt;/component&gt;</span><br><span class="line">&lt;/module&gt;</span><br></pre></td></tr></table></figure>
+
+<p>异常项目：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;module version=&quot;4&quot;&gt;</span><br><span class="line">  &lt;component name=&quot;NewModuleRootManager&quot;&gt;</span><br><span class="line">    &lt;content url=&quot;file://$MODULE_DIR$&quot;&gt;</span><br><span class="line">      &lt;sourceFolder url=&quot;file://$MODULE_DIR$/src/main/java&quot; isTestSource=&quot;false&quot; /&gt;</span><br><span class="line">      &lt;sourceFolder url=&quot;file://$MODULE_DIR$/src/main/resources&quot; isTestSource=&quot;true&quot; /&gt;</span><br><span class="line">    &lt;/content&gt;</span><br><span class="line">  &lt;/component&gt;</span><br><span class="line">&lt;/module&gt;</span><br></pre></td></tr></table></figure>
+
+<p>去了解了一下，iml文件是IDEA自动创建的文件，<code>information of module</code>，就是IDEA的项目标识文件，没有这个文件IDEA会无法识别项目（可以去把这个文件删了然后刷新一下maven试试），一般情况下我们不用去理会。</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p><del>二般情况下</del>，解决办法也很简单</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;module version=&quot;4&quot;&gt;</span><br><span class="line">  &lt;component name=&quot;NewModuleRootManager&quot;&gt;</span><br><span class="line">    &lt;facet type=&quot;Spring&quot; name=&quot;Spring&quot;&gt;</span><br><span class="line">      &lt;configuration /&gt;</span><br><span class="line">    &lt;/facet&gt;</span><br><span class="line">  &lt;/component&gt;</span><br><span class="line">&lt;/module&gt;</span><br></pre></td></tr></table></figure>
+
+<p>把这些内容替换掉就行了</p>
+<p>如果这个方法解决不了，并且你的异常项目没有启动类，尝试重新创建项目，启动一次，再把启动类删掉，初始化一下输出目录</p>
 
         
         <br />
